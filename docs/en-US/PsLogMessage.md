@@ -2,7 +2,7 @@
 Module Name: PsLogMessage
 Module Guid: 2d9d8fd4-afc2-45e9-93b3-5939c590adc7
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.3
+Help Version: 1.0.5
 Locale: en-US
 ---
 
@@ -15,9 +15,6 @@ Logs, displays, and outputs log messages after adding metadata such as timestamp
 
 New-DatedSubfolder [-Root] <string> [<CommonParameters>]
 
-
-### [Repair-PSScriptRoot](Repair-PSScriptRoot.md)
-Replaces '$PSScriptRoot' with "$PSScriptRoot"
 
 ### [Write-LogMsg](Write-LogMsg.md)
 Prepend a prefix to a log message, write the message to an output stream, and write the message to a text file.
