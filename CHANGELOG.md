@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.7] - 2022-07-10 - Update build number
+
+## [1.0.6] - 2022-07-10 - Update build number
+
 ## [1.0.5] - 2022-07-10 - Fixed RootModule in manifest
 
 ## [1.0.6] - 2022-07-10 - Updated readme, publishing to PSGallery
