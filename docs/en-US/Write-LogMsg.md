@@ -14,8 +14,8 @@ Writes a message to a log file and/or PowerShell output stream
 ## SYNTAX
 
 ```
-Write-LogMsg [[-Text] <String>] [[-Type] <String>] [[-AddPrefix] <Boolean>] [[-LogFile] <String>]
- [[-PassThru] <Boolean>] [<CommonParameters>]
+Write-LogMsg [[-Text] <String>] [-Type <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
+ [-PassThru <Boolean>] [-ThisHostname <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,7 +54,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: Named
 Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -69,7 +69,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -84,7 +84,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
+Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -101,6 +101,21 @@ Aliases:
 Required: False
 Position: 1
 Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -ThisHostname
+Hostname to use in the log messages and/or output object
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: (HOSTNAME.EXE)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -114,7 +129,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
+Position: Named
 Default value: Information
 Accept pipeline input: False
 Accept wildcard characters: False

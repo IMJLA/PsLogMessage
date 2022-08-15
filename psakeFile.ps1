@@ -421,7 +421,8 @@ task Lint -depends BuildUpdatableHelp -precondition $analyzePreReqs {
         SeverityThreshold = $TestLintFailBuildOnSeverityLevel
         SettingsPath      = $TestLintSettingsPath
     }
-    Test-PSBuildScriptAnalysis @analyzeParams
+    #Test-PSBuildScriptAnalysis @analyzeParams
+    Invoke-ScriptAnalyzer -Path $Env:BHBuildOutput
 } -description 'Execute PSScriptAnalyzer tests'
 
 $pesterPreReqs = {

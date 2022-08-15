@@ -49,6 +49,7 @@ function Write-LogMsg {
     param(
 
         # Message to log
+        [Parameter(Position = 0, ValueFromPipeline)]
         [string]$Text,
 
         # Output stream to send the message to
@@ -61,13 +62,15 @@ function Write-LogMsg {
         [string]$LogFile,
 
         # Output the message to the pipeline
-        [bool]$PassThru = $false
+        [bool]$PassThru = $false,
+
+        # Hostname to use in the log messages and/or output object
+        [string]$ThisHostname = (HOSTNAME.EXE)
 
     )
 
     $Timestamp = Get-Date -Format s
     $OutputToPipeline = $false
-    $ThisHostname = HOSTNAME.EXE
     $WhoAmI = whoami.exe
     $PSCallStack = Get-PSCallStack
 
@@ -132,5 +135,9 @@ Export-ModuleMember -Function @('New-DatedSubfolder','Write-LogMsg')
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
+
+
 
 
