@@ -65,13 +65,17 @@ function Write-LogMsg {
         [bool]$PassThru = $false,
 
         # Hostname to use in the log messages and/or output object
-        [string]$ThisHostname = (HOSTNAME.EXE)
+        [string]$ThisHostname = (HOSTNAME.EXE),
+
+        # Hostname to use in the log messages and/or output object
+        [string]$WhoAmI = (whoami.EXE),
+
+        [hashtable]$LogMsgCache = $Global:LogMessages
 
     )
 
     $Timestamp = Get-Date -Format s
     $OutputToPipeline = $false
-    $WhoAmI = whoami.exe
     $PSCallStack = Get-PSCallStack
 
     if ($AddPrefix) {
@@ -112,7 +116,7 @@ function Write-LogMsg {
     [string]$Guid = [guid]::NewGuid()
     [string]$Key = "$Timestamp$Guid"
 
-    $Global:LogMessages[$Key] = [pscustomobject]@{
+    $LogMsgCache[$Key] = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI
@@ -135,6 +139,7 @@ Export-ModuleMember -Function @('New-DatedSubfolder','Write-LogMsg')
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

@@ -15,7 +15,8 @@ Writes a message to a log file and/or PowerShell output stream
 
 ```
 Write-LogMsg [[-Text] <String>] [-Type <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
- [-PassThru <Boolean>] [-ThisHostname <String>] [<CommonParameters>]
+ [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] [-LogMsgCache <Hashtable>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -71,6 +72,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogMsgCache
+{{ Fill LogMsgCache Description }}
+
+```yaml
+Type: System.Collections.Hashtable
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: $Global:LogMessages
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -131,6 +147,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: Information
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhoAmI
+Hostname to use in the log messages and/or output object
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: (whoami.EXE)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
