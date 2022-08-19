@@ -74,7 +74,7 @@ function Write-LogMsg {
 
     )
 
-    $Timestamp = Get-Date -Format s
+    $Timestamp = Get-Date -Format 'yyyy-MM-ddThh:mm:ss.ffff'
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
 
@@ -139,6 +139,7 @@ Export-ModuleMember -Function @('New-DatedSubfolder','Write-LogMsg')
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

@@ -56,7 +56,7 @@ function Write-LogMsg {
 
     )
 
-    $Timestamp = Get-Date -Format s
+    $Timestamp = Get-Date -Format 'yyyy-MM-ddThh:mm:ss.ffff'
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
 

@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.14] - 2022-08-19 - Added milliseconds to timestamp for better accuracy
+
 ## [1.0.13] - 2022-08-19 - Added improved support for thread-safe hashtable to cache log messages
 
 ## [1.0.12] - 2022-08-14 - Troubleshooting psakefile
