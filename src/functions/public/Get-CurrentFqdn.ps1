@@ -26,7 +26,7 @@ function Get-CurrentFqdn {
         LogMsgCache  = $LogMsgCache
         WhoAmI       = $WhoAmI
     }
-    Write-LogMsg @LogParams -Text "[System.Net.Dns]::GetHostByName($ThisHostName)"
+    Write-LogMsg @LogParams -Text "[System.Net.Dns]::GetHostByName('$ThisHostName')"
     [System.Net.Dns]::GetHostByName($ThisHostName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
 
 }

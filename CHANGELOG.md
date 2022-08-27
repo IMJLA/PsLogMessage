@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.16] - 2022-08-27 - Added quotes where needed in debug output for get-currentfqdn
+
 ## [1.0.15] - 2022-08-27 - Added Get-CurrentHostname and Get-CurrentWhoAmI functions
 
 ## [1.0.14] - 2022-08-19 - Added milliseconds to timestamp for better accuracy
