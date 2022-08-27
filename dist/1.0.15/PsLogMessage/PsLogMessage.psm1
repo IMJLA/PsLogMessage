@@ -1,4 +1,80 @@
 
+function Get-CurrentFqdn {
+
+    # Output the results of a DNS lookup to the default DNS server for the current hostname
+
+    # Wrapper for [System.Net.Dns]::GetHostByName([string])
+
+    param (
+
+        <#
+        Hostname of the computer running this function.
+
+        Can be provided as a string to avoid calls to HOSTNAME.EXE
+        #>
+        [string]$ThisHostName = (HOSTNAME.EXE),
+
+        # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
+        [string]$WhoAmI = (whoami.EXE),
+
+        # Dictionary of log messages for Write-LogMsg (can be thread-safe if a synchronized hashtable is provided)
+        [hashtable]$LogMsgCache = $Global:LogMessages
+
+    )
+    $LogParams = @{
+        ThisHostname = $ThisHostname
+        Type         = 'Debug'
+        LogMsgCache  = $LogMsgCache
+        WhoAmI       = $WhoAmI
+    }
+    Write-LogMsg @LogParams -Text "[System.Net.Dns]::GetHostByName($ThisHostName)"
+    [System.Net.Dns]::GetHostByName($ThisHostName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
+
+}
+function Get-CurrentHostName {
+    # Future function to universally retrieve hostname using various methods (in order of preference):
+    # hostname.exe
+    # $env:hostname
+    # CIM
+    # other?
+}
+function Get-CurrentWhoAmI {
+
+    # Output the results of whoami.exe after editing them to correct capitalization
+
+    # whoami.exe returns lowercase but we want to honor the correct capitalization
+
+    # Correct capitalization is regurned from $ENV:USERNAME
+
+    param (
+
+        <#
+        Hostname of the computer running this function.
+
+        Can be provided as a string to avoid calls to HOSTNAME.EXE
+        #>
+        [string]$ThisHostName = (HOSTNAME.EXE),
+
+        # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
+        [string]$WhoAmI = (whoami.EXE),
+
+        # Dictionary of log messages for Write-LogMsg (can be thread-safe if a synchronized hashtable is provided)
+        [hashtable]$LogMsgCache = $Global:LogMessages
+
+    )
+    $WhoAmI -replace "^$ThisHostname\\", "$ThisHostname\" -replace "$ENV:USERNAME", $ENV:USERNAME
+    if (-not $PSBoundParameters.ContainsKey('WhoAmI')) {
+        $LogParams = @{
+            ThisHostname = $ThisHostname
+            Type         = 'Debug'
+            LogMsgCache  = $LogMsgCache
+            WhoAmI       = $WhoAmI
+        }
+        # Technically this exe has already been run, but it is advantageous to offer it as a parameter
+        # Also, this way the log will use the correct capitalization
+        Write-LogMsg @LogParams -Text "& whoami.exe"
+    }
+}
 function New-DatedSubfolder {
     # Creates a folder structure with a folder for each year and month
     # Then it creates one timestamped folder inside the appropriate month
@@ -20,12 +96,9 @@ function Write-LogMsg {
 
     <#
         .SYNOPSIS
-
             Prepend a prefix to a log message, write the message to an output stream, and write the message to a text file.
             Writes a message to a log file and/or PowerShell output stream
-
         .DESCRIPTION
-
             Prepends the log message with:
                 a current timestamp
                 the current hostname
@@ -35,16 +108,19 @@ function Write-LogMsg {
 
             Tab-delimits these fields for a compromise between readability and parseability
 
-            Adds the log message to a Global variable #TODO: Make this a thread-safe hashtable, using the timestamp as the key
+            Adds the log message to either:
+            * a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $LogMsgCache parameter
+            * a Global:$LogMessages variable which was created by the PsLogMessage module during import
 
             Optionally writes the message to a log file
 
             Optionally writes the message to a PowerShell output stream
-
-        .NOTES
-
+        .INPUTS
+        [System.String]$Text parameter
+        .OUTPUTS
+        [System.String] Resulting log line, returned if the -PassThru or -Type Output parameters were used
     #>
-
+    [OutputType([System.String])]
     [CmdletBinding()]
     param(
 
@@ -135,10 +211,11 @@ ForEach ($ThisFile in $CSharpFiles) {
     Add-Type -Path $ThisFile.FullName -ErrorAction Stop
 }
 #>
-Export-ModuleMember -Function @('New-DatedSubfolder','Write-LogMsg')
+Export-ModuleMember -Function @('Get-CurrentFqdn','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

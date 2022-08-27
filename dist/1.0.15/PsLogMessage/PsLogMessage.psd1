@@ -12,7 +12,7 @@
     RootModule        = 'PsLogMessage'
 
     # Version number of this module.
-    ModuleVersion     = '1.0.14'
+    ModuleVersion     = '1.0.15'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -69,7 +69,7 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = @('New-DatedSubfolder','Write-LogMsg')
+    FunctionsToExport = @('Get-CurrentFqdn','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport   = '*'

@@ -2,12 +2,9 @@ function Write-LogMsg {
 
     <#
         .SYNOPSIS
-
             Prepend a prefix to a log message, write the message to an output stream, and write the message to a text file.
             Writes a message to a log file and/or PowerShell output stream
-
         .DESCRIPTION
-
             Prepends the log message with:
                 a current timestamp
                 the current hostname
@@ -17,16 +14,19 @@ function Write-LogMsg {
 
             Tab-delimits these fields for a compromise between readability and parseability
 
-            Adds the log message to a Global variable #TODO: Make this a thread-safe hashtable, using the timestamp as the key
+            Adds the log message to either:
+            * a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $LogMsgCache parameter
+            * a Global:$LogMessages variable which was created by the PsLogMessage module during import
 
             Optionally writes the message to a log file
 
             Optionally writes the message to a PowerShell output stream
-
-        .NOTES
-
+        .INPUTS
+        [System.String]$Text parameter
+        .OUTPUTS
+        [System.String] Resulting log line, returned if the -PassThru or -Type Output parameters were used
     #>
-
+    [OutputType([System.String])]
     [CmdletBinding()]
     param(
 
