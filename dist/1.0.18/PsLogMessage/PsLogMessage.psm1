@@ -1,9 +1,9 @@
 
 function ConvertTo-DnsFqdn {
 
-    # Output the results of a DNS lookup to the default DNS server for the current hostname
+    # Output the results of a DNS lookup to the default DNS server for the specified
 
-    # Wrapper for [System.Net.Dns]::GetHostByName([string])
+    # Wrapper for [System.Net.Dns]::GetHostByName([string]$ComputerName)
 
     param (
 
@@ -217,6 +217,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
