@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-CurrentFqdn
+# ConvertTo-DnsFqdn
 
 ## SYNOPSIS
 {{ Fill in the Synopsis }}
@@ -13,7 +13,8 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-CurrentFqdn [[-ThisHostName] <String>] [[-WhoAmI] <String>] [[-LogMsgCache] <Hashtable>]
+ConvertTo-DnsFqdn [[-ComputerName] <String>] [[-ThisHostName] <String>] [[-WhoAmI] <String>]
+ [[-LogMsgCache] <Hashtable>]
 ```
 
 ## DESCRIPTION
@@ -22,13 +23,28 @@ Get-CurrentFqdn [[-ThisHostName] <String>] [[-WhoAmI] <String>] [[-LogMsgCache] 
 ## EXAMPLES
 
 ### Example 1
-```
+```powershell
 PS C:\> {{ Add example code here }}
 ```
 
 {{ Add example description here }}
 
 ## PARAMETERS
+
+### -ComputerName
+{{ Fill ComputerName Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -LogMsgCache
 {{ Fill LogMsgCache Description }}
@@ -39,7 +55,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -54,7 +70,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 0
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -69,7 +85,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -78,6 +94,7 @@ Accept wildcard characters: False
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Object

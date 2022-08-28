@@ -1,11 +1,13 @@
 
-function Get-CurrentFqdn {
+function ConvertTo-DnsFqdn {
 
     # Output the results of a DNS lookup to the default DNS server for the current hostname
 
     # Wrapper for [System.Net.Dns]::GetHostByName([string])
 
     param (
+
+        [string]$ComputerName,
 
         <#
         Hostname of the computer running this function.
@@ -27,8 +29,8 @@ function Get-CurrentFqdn {
         LogMsgCache  = $LogMsgCache
         WhoAmI       = $WhoAmI
     }
-    Write-LogMsg @LogParams -Text "[System.Net.Dns]::GetHostByName('$ThisHostName')"
-    [System.Net.Dns]::GetHostByName($ThisHostName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
+    Write-LogMsg @LogParams -Text "[System.Net.Dns]::GetHostByName('$ComputerName')"
+    [System.Net.Dns]::GetHostByName($ComputerName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
 
 }
 function Get-CurrentHostName {
@@ -211,10 +213,11 @@ ForEach ($ThisFile in $CSharpFiles) {
     Add-Type -Path $ThisFile.FullName -ErrorAction Stop
 }
 #>
-Export-ModuleMember -Function @('Get-CurrentFqdn','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

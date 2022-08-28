@@ -1,8 +1,8 @@
 ---
 Module Name: PsLogMessage
-Module Guid: 2d9d8fd4-afc2-45e9-93b3-5939c590adc7
+Module Guid: 2d9d8fd4-afc2-45e9-93b3-5939c590adc7 2d9d8fd4-afc2-45e9-93b3-5939c590adc7
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.16
+Help Version: 1.0.17
 Locale: en-US
 ---
 
@@ -11,10 +11,13 @@ Locale: en-US
 Logs, displays, and outputs log messages after adding metadata such as timestamp, hostname, etc.
 
 ## PsLogMessage Cmdlets
+### [ConvertTo-DnsFqdn](ConvertTo-DnsFqdn.md)
+
+ConvertTo-DnsFqdn [[-ComputerName] <string>] [[-ThisHostName] <string>] [[-WhoAmI] <string>] [[-LogMsgCache] <hashtable>]
+
+
 ### [Get-CurrentFqdn](Get-CurrentFqdn.md)
-
-Get-CurrentFqdn [[-ThisHostName] <string>] [[-WhoAmI] <string>] [[-LogMsgCache] <hashtable>]
-
+{{ Fill in the Description }}
 
 ### [Get-CurrentHostname](Get-CurrentHostname.md)
 

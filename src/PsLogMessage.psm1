@@ -5,10 +5,11 @@ ForEach ($ThisFile in $CSharpFiles) {
     Add-Type -Path $ThisFile.FullName -ErrorAction Stop
 }
 #>
-Export-ModuleMember -Function @('Get-CurrentFqdn','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
