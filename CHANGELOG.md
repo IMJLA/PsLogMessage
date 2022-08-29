@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.19] - 2022-08-29 - Changed behavior of 'Silent' type to make it truly silent, replaced previous behavior with 'Quiet' type (in Write-LogMsg)
+
 ## [1.0.18] - 2022-08-27 - updated comment-based help
 
 ## [1.0.17] - 2022-08-27 - Added convertto-dnsfqdn

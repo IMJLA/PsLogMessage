@@ -131,6 +131,7 @@ function Write-LogMsg {
         [string]$Text,
 
         # Output stream to send the message to
+        [ValidateSet('Silent', 'Quiet', 'Success', 'Debug', 'Verbose', 'Output', 'Host', 'Warning', 'Error', 'Information', $null)]
         [string]$Type = 'Information',
 
         # Add a prefix to the message including the date, hostname, current user, and info about the current call stack
@@ -152,6 +153,10 @@ function Write-LogMsg {
 
     )
 
+
+    # This will ensure the message is not written to any PowerShell output streams or log files
+    if ($Type -eq 'Silent') { return }
+
     $Timestamp = Get-Date -Format 'yyyy-MM-ddThh:mm:ss.ffff'
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
@@ -165,8 +170,8 @@ function Write-LogMsg {
 
     Switch ($Type) {
 
-        # This will ensure the message is not written to any PowerShell output streams
-        'Silent' {}
+        # This will ensure the message is added to log files, but not written to any PowerShell output streams
+        'Quiet' {}
 
         # This one is made-up to correspond with the 'success' contextual class in Bootstrap.
         'Success' { Write-Information "SUCCESS: $MessageToLog" }
@@ -217,6 +222,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
