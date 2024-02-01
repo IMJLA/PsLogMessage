@@ -4,7 +4,7 @@ function Get-CurrentWhoAmI {
 
     # whoami.exe returns lowercase but we want to honor the correct capitalization
 
-    # Correct capitalization is regurned from $ENV:USERNAME
+    # Correct capitalization is returned from $ENV:USERNAME
 
     param (
 
