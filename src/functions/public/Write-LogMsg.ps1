@@ -110,7 +110,7 @@ function Write-LogMsg {
     # Add a GUID to the timestamp and use it as a unique key in the hashtable of log messages
     [string]$Guid = [guid]::NewGuid()
     [string]$Key = "$Timestamp$Guid"
-
+    return
     $LogMsgCache[$Key] = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
