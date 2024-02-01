@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.30] - 2024-01-31 - confirmed bug was missing logmsgcache param in get-folderace
+
 ## [1.0.29] - 2024-01-31 - bugfix was attempting to index null array logmsgcache
 
 ## [1.0.28] - 2024-01-31 - bugfix time format
