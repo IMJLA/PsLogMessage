@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.28] - 2024-01-31 - bugfix time format
+
 ## [1.0.27] - 2024-01-31 - bugfix was attempting to index null array pscallstack
 
 ## [1.0.26] - 2024-01-31 - bugfix was attempting to index null array pscallstack

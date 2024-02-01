@@ -61,7 +61,7 @@ function Write-LogMsg {
     # This will ensure the message is not written to any PowerShell output streams or log files
     if ($Type -eq 'Silent') { return }
 
-    $Timestamp = Get-Date -Format 'yyyy-MM-ddThh:mm:ss.ffff'
+    $Timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.ffff K'
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
 
@@ -69,8 +69,8 @@ function Write-LogMsg {
         $Location = $PSCallStack[1].Location
         $Command = $PSCallStack[1].Command
     } else {
-        $Location = $null
-        $Command = $null
+        $Location = $MyInvocation.ScriptName
+        $Command = $MyInvocation.MyCommand
     }
 
     if ($AddPrefix) {
@@ -99,7 +99,7 @@ function Write-LogMsg {
         default { Write-Information "INFO:    $MessageToLog" }
     }
 
-    if ('' -ne $LogFile) {
+    if ($PSBoundParameters.ContainsKey('LogFile')) {
         $MessageToLog | Out-File $LogFile -Append
     }
 
@@ -111,7 +111,6 @@ function Write-LogMsg {
     [string]$Guid = [guid]::NewGuid()
     [string]$Key = "$Timestamp$Guid"
 
-    return
     $LogMsgCache[$Key] = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
