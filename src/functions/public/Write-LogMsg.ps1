@@ -65,7 +65,7 @@ function Write-LogMsg {
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
 
-    if ($PSCallStack) {
+    if ($null -ne $PSCallStack) {
         $Location = $PSCallStack[1].Location
         $Command = $PSCallStack[1].Command
     } else {
