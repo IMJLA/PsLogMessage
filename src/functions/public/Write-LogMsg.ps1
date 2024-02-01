@@ -72,7 +72,6 @@ function Write-LogMsg {
         $Location = $null
         $Command = $null
     }
-    return
 
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
@@ -112,6 +111,7 @@ function Write-LogMsg {
     [string]$Guid = [guid]::NewGuid()
     [string]$Key = "$Timestamp$Guid"
 
+    return
     $LogMsgCache[$Key] = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
