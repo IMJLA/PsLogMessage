@@ -65,9 +65,17 @@ function Write-LogMsg {
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
 
+    if ($PSCallStack) {
+        $Location = $PSCallStack[1].Location
+        $Command = $PSCallStack[1].Command
+    } else {
+        $Location = $null
+        $Command = $null
+    }
+
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
-        [string]$MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$($PSCallStack[1].Location)`t$($PSCallStack[1].Command)`t$($MyInvocation.ScriptLineNumber)`t$($Type)`t$($Text)"
+        [string]$MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$($Type)`t$($Text)"
     } else {
         [string]$MessageToLog = $Text
     }
@@ -107,8 +115,8 @@ function Write-LogMsg {
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI
-        Location  = $PSCallStack[1].Location
-        Command   = $PSCallStack[1].Command
+        Location  = $Location
+        Command   = $Command
         Line      = $MyInvocation.ScriptLineNumber
         Type      = $Type
         Text      = $Text

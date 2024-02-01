@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.23] - 2024-01-31 - bugfix was attempting to index null array pscallstack
+
+## [1.0.22] - 2024-01-31 - bugfix was attempting to index null array pscallstack
+
 ## [1.0.21] - 2024-01-31 - comment fix get-currentwhoami
 
 ## [1.0.20] - 2022-09-05 - Added Suffix param to New-DatedSubfolder
