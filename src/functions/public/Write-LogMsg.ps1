@@ -72,6 +72,7 @@ function Write-LogMsg {
         $Location = $null
         $Command = $null
     }
+    return
 
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator

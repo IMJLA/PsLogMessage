@@ -171,6 +171,7 @@ function Write-LogMsg {
         $Location = $null
         $Command = $null
     }
+    return
 
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
@@ -233,6 +234,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
