@@ -61,23 +61,17 @@ function Write-LogMsg {
     # This will ensure the message is not written to any PowerShell output streams or log files
     if ($Type -eq 'Silent') { return }
 
-    $Timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.ffff K'
+    $Timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.ffffK'
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
-
-    if ($null -ne $PSCallStack) {
-        $Location = $PSCallStack[1].Location
-        $Command = $PSCallStack[1].Command
-    } else {
-        $Location = $MyInvocation.ScriptName
-        $Command = $MyInvocation.MyCommand
-    }
+    $Location = $PSCallStack[1].Location
+    $Command = $PSCallStack[1].Command
 
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
-        [string]$MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$($Type)`t$($Text)"
+        $MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$($Type)`t$($Text)"
     } else {
-        [string]$MessageToLog = $Text
+        $MessageToLog = $Text
     }
 
     Switch ($Type) {
