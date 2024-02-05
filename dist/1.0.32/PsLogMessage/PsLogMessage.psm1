@@ -42,7 +42,7 @@ function Get-CurrentHostName {
 }
 function Get-CurrentWhoAmI {
 
-    # Output the results of whoami.exe after editing them to correct capitalization
+    # Output the results of whoami.exe after editing them to correct capitalization of both the hostname and the account name
 
     # whoami.exe returns lowercase but we want to honor the correct capitalization
 
@@ -72,9 +72,9 @@ function Get-CurrentWhoAmI {
             LogMsgCache  = $LogMsgCache
             WhoAmI       = $WhoAmI
         }
-        # Technically this exe has already been run, but it is advantageous to offer it as a parameter
-        # Also, this way the log will use the correct capitalization
-        Write-LogMsg @LogParams -Text "& whoami.exe"
+        # This exe has already been run as the default value for the parameter if it was not specified
+        # Log it now, with the correct capitalization
+        Write-LogMsg @LogParams -Text 'whoami.exe # This command was already run but is now being logged'
     }
 }
 function New-DatedSubfolder {
@@ -227,6 +227,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
