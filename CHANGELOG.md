@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.33] - 2024-03-24 - remove global var
+
 ## [1.0.32] - 2024-02-04 - updated comments and debut output
 
 ## [1.0.31] - 2024-02-02 - write-logmsg remove space from timestamp & remove unnecessary conditional around pscallstack

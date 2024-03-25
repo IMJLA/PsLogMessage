@@ -53,7 +53,7 @@ function Write-LogMsg {
         # Hostname to use in the log messages and/or output object
         [string]$WhoAmI = (whoami.EXE),
 
-        [hashtable]$LogMsgCache = $Global:LogMessages
+        [hashtable]$LogMsgCache = [hashtable]::Synchronized(@{})
 
     )
 

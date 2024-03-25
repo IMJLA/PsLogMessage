@@ -88,7 +88,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: $Global:LogMessages
+Default value: [hashtable]::Synchronized(@{})
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
