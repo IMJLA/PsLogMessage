@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.34] - 2024-03-24 - use simple hashtables for LogMsgCache default
+
 ## [1.0.33] - 2024-03-24 - remove global var
 
 ## [1.0.32] - 2024-02-04 - updated comments and debut output
