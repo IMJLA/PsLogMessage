@@ -176,20 +176,20 @@ function Write-LogMsg {
     Switch ($Type) {
 
         # This will ensure the message is added to log files, but not written to any PowerShell output streams
-        'Quiet' {}
+        'Quiet' { break }
 
         # This one is made-up to correspond with the 'success' contextual class in Bootstrap.
-        'Success' { Write-Information "SUCCESS: $MessageToLog" }
+        'Success' { Write-Information "SUCCESS: $MessageToLog" ; break }
 
         # These represent normal PowerShell output streams
         # The correct number of spaces should be added to maintain proper column alignment
-        'Debug' { Write-Debug "  $MessageToLog" }
-        'Verbose' { Write-Verbose $MessageToLog }
-        'Host' { Write-Host "HOST:    $MessageToLog" }
-        'Warning' { Write-Warning $MessageToLog }
-        'Error' { Write-Error $MessageToLog }
-        'Output' { $OutputToPipeline = $true }
-        default { Write-Information "INFO:    $MessageToLog" }
+        'Debug' { Write-Debug "  $MessageToLog" ; break }
+        'Verbose' { Write-Verbose $MessageToLog ; break }
+        'Host' { Write-Host "HOST:    $MessageToLog" ; break }
+        'Warning' { Write-Warning $MessageToLog ; break }
+        'Error' { Write-Error $MessageToLog ; break }
+        'Output' { $OutputToPipeline = $true ; break }
+        default { Write-Information "INFO:    $MessageToLog" ; break }
     }
 
     if ($PSBoundParameters.ContainsKey('LogFile')) {
@@ -227,6 +227,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
