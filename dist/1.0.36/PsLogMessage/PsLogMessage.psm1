@@ -19,17 +19,19 @@ function ConvertTo-DnsFqdn {
         # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
         [string]$WhoAmI = (whoami.EXE),
 
-        # Dictionary of log messages for Write-LogMsg (can be thread-safe if a synchronized hashtable is provided)
-        [hashtable]$LogMsgCache = @{}
+        # Log messages which have not yet been written to disk
+        [hashtable]$Buffer = @{}
 
     )
-    $LogParams = @{
+
+    $Log = @{
         ThisHostname = $ThisHostname
         Type         = 'Debug'
-        LogMsgCache  = $LogMsgCache
+        Buffer       = $Buffer
         WhoAmI       = $WhoAmI
     }
-    Write-LogMsg @LogParams -Text "[System.Net.Dns]::GetHostByName('$ComputerName')"
+
+    Write-LogMsg @Log -Text "[System.Net.Dns]::GetHostByName('$ComputerName')"
     [System.Net.Dns]::GetHostByName($ComputerName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
 
 }
@@ -60,22 +62,28 @@ function Get-CurrentWhoAmI {
         # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
         [string]$WhoAmI = (whoami.EXE),
 
-        # Dictionary of log messages for Write-LogMsg (can be thread-safe if a synchronized hashtable is provided)
-        [hashtable]$LogMsgCache = @{}
+        # Log messages which have not yet been written to disk
+        [hashtable]$Buffer = @{}
 
     )
+
     $WhoAmI -replace "^$ThisHostname\\", "$ThisHostname\" -replace "$ENV:USERNAME", $ENV:USERNAME
+
     if (-not $PSBoundParameters.ContainsKey('WhoAmI')) {
-        $LogParams = @{
+
+        $Log = @{
             ThisHostname = $ThisHostname
             Type         = 'Debug'
-            LogMsgCache  = $LogMsgCache
+            Buffer       = $Buffer
             WhoAmI       = $WhoAmI
         }
+
         # This exe has already been run as the default value for the parameter if it was not specified
         # Log it now, with the correct capitalization
-        Write-LogMsg @LogParams -Text 'whoami.exe # This command was already run but is now being logged'
+        Write-LogMsg @Log -Text 'whoami.exe # This command was already run but is now being logged'
+
     }
+
 }
 function New-DatedSubfolder {
     # Creates a folder structure with a folder for each year and month
@@ -114,7 +122,7 @@ function Write-LogMsg {
             Tab-delimits these fields for a compromise between readability and parseability
 
             Adds the log message to either:
-            * a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $LogMsgCache parameter
+            * a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $Buffer parameter
             * a Global:$LogMessages variable which was created by the PsLogMessage module during import
 
             Optionally writes the message to a log file
@@ -152,7 +160,8 @@ function Write-LogMsg {
         # Hostname to use in the log messages and/or output object
         [string]$WhoAmI = (whoami.EXE),
 
-        [hashtable]$LogMsgCache = @{}
+        # Log messages which have not yet been written to disk
+        [hashtable]$Buffer = @{}
 
     )
 
@@ -204,7 +213,7 @@ function Write-LogMsg {
     [string]$Guid = [guid]::NewGuid()
     [string]$Key = "$Timestamp$Guid"
 
-    $LogMsgCache[$Key] = [pscustomobject]@{
+    $Buffer[$Key] = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI
@@ -227,6 +236,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

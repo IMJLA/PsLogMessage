@@ -15,7 +15,7 @@ function Write-LogMsg {
             Tab-delimits these fields for a compromise between readability and parseability
 
             Adds the log message to either:
-            * a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $LogMsgCache parameter
+            * a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $Buffer parameter
             * a Global:$LogMessages variable which was created by the PsLogMessage module during import
 
             Optionally writes the message to a log file
@@ -53,7 +53,8 @@ function Write-LogMsg {
         # Hostname to use in the log messages and/or output object
         [string]$WhoAmI = (whoami.EXE),
 
-        [hashtable]$LogMsgCache = @{}
+        # Log messages which have not yet been written to disk
+        [hashtable]$Buffer = @{}
 
     )
 
@@ -105,7 +106,7 @@ function Write-LogMsg {
     [string]$Guid = [guid]::NewGuid()
     [string]$Key = "$Timestamp$Guid"
 
-    $LogMsgCache[$Key] = [pscustomobject]@{
+    $Buffer[$Key] = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI

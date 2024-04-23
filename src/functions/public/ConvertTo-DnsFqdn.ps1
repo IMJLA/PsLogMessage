@@ -18,17 +18,19 @@ function ConvertTo-DnsFqdn {
         # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
         [string]$WhoAmI = (whoami.EXE),
 
-        # Dictionary of log messages for Write-LogMsg (can be thread-safe if a synchronized hashtable is provided)
-        [hashtable]$LogMsgCache = @{}
+        # Log messages which have not yet been written to disk
+        [hashtable]$Buffer = @{}
 
     )
-    $LogParams = @{
+
+    $Log = @{
         ThisHostname = $ThisHostname
         Type         = 'Debug'
-        LogMsgCache  = $LogMsgCache
+        Buffer       = $Buffer
         WhoAmI       = $WhoAmI
     }
-    Write-LogMsg @LogParams -Text "[System.Net.Dns]::GetHostByName('$ComputerName')"
+
+    Write-LogMsg @Log -Text "[System.Net.Dns]::GetHostByName('$ComputerName')"
     [System.Net.Dns]::GetHostByName($ComputerName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
 
 }

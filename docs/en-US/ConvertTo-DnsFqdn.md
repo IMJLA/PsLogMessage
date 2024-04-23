@@ -14,7 +14,7 @@ schema: 2.0.0
 
 ```
 ConvertTo-DnsFqdn [[-ComputerName] <String>] [[-ThisHostName] <String>] [[-WhoAmI] <String>]
- [[-LogMsgCache] <Hashtable>]
+ [[-Buffer] <Hashtable>]
 ```
 
 ## DESCRIPTION
@@ -31,6 +31,21 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
+### -Buffer
+{{ Fill Buffer Description }}
+
+```yaml
+Type: System.Collections.Hashtable
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ComputerName
 {{ Fill ComputerName Description }}
 
@@ -41,21 +56,6 @@ Aliases:
 
 Required: False
 Position: 0
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LogMsgCache
-{{ Fill LogMsgCache Description }}
-
-```yaml
-Type: System.Collections.Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

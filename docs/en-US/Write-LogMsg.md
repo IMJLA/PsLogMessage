@@ -15,7 +15,7 @@ Writes a message to a log file and/or PowerShell output stream
 
 ```
 Write-LogMsg [[-Text] <String>] [-Type <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
- [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] [-LogMsgCache <Hashtable>]
+ [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] [-Buffer <Hashtable>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
@@ -30,7 +30,7 @@ Prepends the log message with:
 Tab-delimits these fields for a compromise between readability and parseability
 
 Adds the log message to either:
-* a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $LogMsgCache parameter
+* a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $Buffer parameter
 * a Global:$LogMessages variable which was created by the PsLogMessage module during import
 
 Optionally writes the message to a log file
@@ -63,6 +63,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Buffer
+Log messages which have not yet been written to disk
+
+```yaml
+Type: System.Collections.Hashtable
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: @{}
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -LogFile
 Text file to append the log message to
 
@@ -74,21 +89,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LogMsgCache
-{{ Fill LogMsgCache Description }}
-
-```yaml
-Type: System.Collections.Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: @{}
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

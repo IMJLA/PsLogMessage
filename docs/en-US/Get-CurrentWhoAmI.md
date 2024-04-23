@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-CurrentWhoAmI [[-ThisHostName] <String>] [[-WhoAmI] <String>] [[-LogMsgCache] <Hashtable>]
+Get-CurrentWhoAmI [[-ThisHostName] <String>] [[-WhoAmI] <String>] [[-Buffer] <Hashtable>]
 ```
 
 ## DESCRIPTION
@@ -30,8 +30,8 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -LogMsgCache
-{{ Fill LogMsgCache Description }}
+### -Buffer
+{{ Fill Buffer Description }}
 
 ```yaml
 Type: System.Collections.Hashtable
