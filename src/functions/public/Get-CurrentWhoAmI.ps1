@@ -19,7 +19,7 @@ function Get-CurrentWhoAmI {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{}
+        [hashtable]$LogBuffer = @{}
 
     )
 
@@ -30,7 +30,7 @@ function Get-CurrentWhoAmI {
         $Log = @{
             ThisHostname = $ThisHostname
             Type         = 'Debug'
-            Buffer       = $Buffer
+            Buffer       = $LogBuffer
             WhoAmI       = $WhoAmI
         }
 

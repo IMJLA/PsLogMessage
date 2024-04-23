@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.37] - 2024-04-22 - rename LogMsgCache to Buffer in Write-LogMsg
+
 ## [1.0.36] - 2024-04-22 - param rename from logmsgcache to buffer
 
 ## [1.0.35] - 2024-03-25 - add break to exit switch faster for better efficiency

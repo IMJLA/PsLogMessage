@@ -20,14 +20,14 @@ function ConvertTo-DnsFqdn {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{}
+        [hashtable]$LogBuffer = @{}
 
     )
 
     $Log = @{
         ThisHostname = $ThisHostname
         Type         = 'Debug'
-        Buffer       = $Buffer
+        Buffer       = $LogBuffer
         WhoAmI       = $WhoAmI
     }
 
@@ -63,7 +63,7 @@ function Get-CurrentWhoAmI {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{}
+        [hashtable]$LogBuffer = @{}
 
     )
 
@@ -74,7 +74,7 @@ function Get-CurrentWhoAmI {
         $Log = @{
             ThisHostname = $ThisHostname
             Type         = 'Debug'
-            Buffer       = $Buffer
+            Buffer       = $LogBuffer
             WhoAmI       = $WhoAmI
         }
 
@@ -236,6 +236,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
