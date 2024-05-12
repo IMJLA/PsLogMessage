@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.43] - 2024-05-12 - bugfix Expand parameter
+
+## [1.0.42] - 2024-05-12 - bugfix Expand parameter
+
 ## [1.0.41] - 2024-05-12 - bugfixes and improvements for Expand parameter
 
 ## [1.0.40] - 2024-05-12 - bugfixes and improvements for Expand parameter

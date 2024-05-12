@@ -65,10 +65,9 @@ function Write-LogMsg {
         #>
         [hashtable[]]$Expand,
 
-        [hashtable]$ExpandKeyMap = @{ Output = '$Parents' }
+        [hashtable]$ExpandKeyMap = @{ Output = '$Parents' ; TargetPath = '$Parents' }
 
     )
-
 
     # This will ensure the message is not written to any PowerShell output streams or log files
     if ($Type -eq 'Silent') { return }
@@ -83,20 +82,15 @@ function Write-LogMsg {
         ForEach ($Key in $Splat.Keys) {
             $Value = $ExpandKeyMap[$Key]
             if (-not $Value) {
-                switch ($Key.GetType().FullName) {
-                    'System.Collections.Hashtable+SyncHashtable' {
+                $Value = "'$($Splat[$Key])'"
+                switch ($Value) {
+                    "'System.Collections.Hashtable+SyncHashtable'" {
                         $Value = "'`$$Key'"
-                    }
-                    default {
-                        $Value = "'$($Splat[$Key])'"
+                        break
                     }
                 }
             }
-            switch ($Value) {
-                default {
-                    $Text = "$Text -$Key $Value"
-                }
-            }
+            $Text = "$Text -$Key $Value"
         }
     }
 
