@@ -161,7 +161,16 @@ function Write-LogMsg {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{}
+        [hashtable]$Buffer = @{},
+
+        <#
+        Splats for the command at the end of the -Text parameter.
+        E.g.
+            Write-LogMsg -Text 'Get-Process' -Expand @{Name = 'explorer'}
+        Has a resultant $Text value of:
+            Get-Process -Name explorer
+        #>
+        [hashtable[]]$Expand
 
     )
 
@@ -174,6 +183,21 @@ function Write-LogMsg {
     $PSCallStack = Get-PSCallStack
     $Location = $PSCallStack[1].Location
     $Command = $PSCallStack[1].Command
+
+    ForEach ($Splat in $Expand) {
+        ForEach ($Key in $Splat.Keys) {
+            switch ($Key) {
+                default {
+                    $Value = $Splat[$Key]
+                    switch ($Value) {
+                        default {
+                            $Text = "$Text -$Key -$Value"
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
@@ -236,6 +260,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

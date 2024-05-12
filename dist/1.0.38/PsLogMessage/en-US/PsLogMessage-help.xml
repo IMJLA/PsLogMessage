@@ -517,6 +517,18 @@
           <dev:defaultValue>@{}</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Expand</maml:name>
+          <maml:description>
+            <maml:para>Splats for the command at the end of the -Text parameter. E.g.     Write-LogMsg -Text 'Get-Process' -Expand @{Name = 'explorer'} Has a resultant $Text value of:     Get-Process -Name explorer</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.Collections.Hashtable[]</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Collections.Hashtable[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>LogFile</maml:name>
           <maml:description>
             <maml:para>Text file to append the log message to</maml:para>
@@ -614,6 +626,18 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>@{}</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Expand</maml:name>
+        <maml:description>
+          <maml:para>Splats for the command at the end of the -Text parameter. E.g.     Write-LogMsg -Text 'Get-Process' -Expand @{Name = 'explorer'} Has a resultant $Text value of:     Get-Process -Name explorer</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">System.Collections.Hashtable[]</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Collections.Hashtable[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>LogFile</maml:name>

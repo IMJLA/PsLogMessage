@@ -16,7 +16,7 @@ Writes a message to a log file and/or PowerShell output stream
 ```
 Write-LogMsg [[-Text] <String>] [-Type <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
  [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] [-Buffer <Hashtable>]
- [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ [-Expand <Hashtable[]>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,6 +74,25 @@ Aliases:
 Required: False
 Position: Named
 Default value: @{}
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Expand
+Splats for the command at the end of the -Text parameter.
+E.g.
+    Write-LogMsg -Text 'Get-Process' -Expand @{Name = 'explorer'}
+Has a resultant $Text value of:
+    Get-Process -Name explorer
+
+```yaml
+Type: System.Collections.Hashtable[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
