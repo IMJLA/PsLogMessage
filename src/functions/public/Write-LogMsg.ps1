@@ -85,15 +85,20 @@ function Write-LogMsg {
                 $Value = $Splat[$Key]
                 if ($Value) {
                     switch ($Value.GetType().FullName) {
-                        'System.Int32' {
-                            break
-                        }
                         'System.Collections.Hashtable' {
                             $Value = "`$$Key"
                             break
                         }
                         'System.Collections.Hashtable+SyncHashtable' {
                             $Value = "`$$Key"
+                            break
+                        }
+                        'System.Int32' {
+                            $Value = "($Value)"
+                            break
+                        }
+                        'System.UInt16' {
+                            $Value = "($Value)"
                             break
                         }
                         default {
