@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.41] - 2024-05-12 - bugfixes and improvements for Expand parameter
+
+## [1.0.40] - 2024-05-12 - bugfixes and improvements for Expand parameter
+
+## [1.0.39] - 2024-05-12 - bugfixes and improvements for Expand parameter
+
 ## [1.0.38] - 2024-05-12 - add -Expand parameter for easy logging of command splats
 
 ## [1.0.37] - 2024-04-22 - rename LogMsgCache to Buffer in Write-LogMsg

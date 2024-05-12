@@ -40,3 +40,6 @@ $Global:LogMessages = [hashtable]::Synchronized(@{})
 
 
 
+
+
+

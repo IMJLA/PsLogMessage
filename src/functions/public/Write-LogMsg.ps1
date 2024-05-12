@@ -63,7 +63,9 @@ function Write-LogMsg {
         Has a resultant $Text value of:
             Get-Process -Name explorer
         #>
-        [hashtable[]]$Expand
+        [hashtable[]]$Expand,
+
+        [hashtable]$ExpandKeyMap = @{ Output = '$Parents' }
 
     )
 
@@ -79,14 +81,20 @@ function Write-LogMsg {
 
     ForEach ($Splat in $Expand) {
         ForEach ($Key in $Splat.Keys) {
-            switch ($Key) {
-                default {
-                    $Value = $Splat[$Key]
-                    switch ($Value) {
-                        default {
-                            $Text = "$Text -$Key -$Value"
-                        }
+            $Value = $ExpandKeyMap[$Key]
+            if (-not $Value) {
+                switch ($Key.GetType().FullName) {
+                    'System.Collections.Hashtable+SyncHashtable' {
+                        $Value = "'`$$Key'"
                     }
+                    default {
+                        $Value = "'$($Splat[$Key])'"
+                    }
+                }
+            }
+            switch ($Value) {
+                default {
+                    $Text = "$Text -$Key $Value"
                 }
             }
         }
