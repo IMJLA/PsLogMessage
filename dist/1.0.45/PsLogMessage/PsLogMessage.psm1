@@ -189,11 +189,21 @@ function Write-LogMsg {
         ForEach ($Key in $Splat.Keys) {
             $Value = $ExpandKeyMap[$Key]
             if (-not $Value) {
-                $Value = "'$($Splat[$Key])'"
-                switch ($Value) {
-                    "'System.Collections.Hashtable+SyncHashtable'" {
+                $Value = $Splat[$Key]
+                switch ($Value.GetType().FullName) {
+                    'System.Int32' {
+                        break
+                    }
+                    'System.Collections.Hashtable' {
                         $Value = "`$$Key"
                         break
+                    }
+                    'System.Collections.Hashtable+SyncHashtable' {
+                        $Value = "`$$Key"
+                        break
+                    }
+                    default {
+                        $Value = "'$Value'"
                     }
                 }
             }
@@ -262,6 +272,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
