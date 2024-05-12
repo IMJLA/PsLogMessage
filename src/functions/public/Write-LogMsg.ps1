@@ -85,7 +85,7 @@ function Write-LogMsg {
                 $Value = "'$($Splat[$Key])'"
                 switch ($Value) {
                     "'System.Collections.Hashtable+SyncHashtable'" {
-                        $Value = "'`$$Key'"
+                        $Value = "`$$Key"
                         break
                     }
                 }

@@ -192,7 +192,7 @@ function Write-LogMsg {
                 $Value = "'$($Splat[$Key])'"
                 switch ($Value) {
                     "'System.Collections.Hashtable+SyncHashtable'" {
-                        $Value = "'`$$Key'"
+                        $Value = "`$$Key"
                         break
                     }
                 }
@@ -262,6 +262,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Get-CurrentHostname','Get-C
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
