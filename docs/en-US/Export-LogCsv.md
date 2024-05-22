@@ -14,8 +14,8 @@ Export a hashtable of log message objects to a CSV file.
 
 ```
 Export-LogCsv [[-LogFile] <String>] [[-Buffer] <Hashtable>] [[-ThisHostName] <String>] [[-WhoAmI] <String>]
- [[-LogBuffer] <Hashtable>] [[-DebugOutputStream] <String>] [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+ [[-LogBuffer] <Hashtable>] [[-DebugOutputStream] <String>] [[-ProgressParentId] <Int32>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -105,6 +105,21 @@ Aliases: proga
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressParentId
+ID of the parent progress bar under which to show progres
+
+```yaml
+Type: System.Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 7
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
