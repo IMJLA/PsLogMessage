@@ -2,7 +2,7 @@
 Module Name: PsLogMessage
 Module Guid: 2d9d8fd4-afc2-45e9-93b3-5939c590adc7
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.47
+Help Version: 1.0.51
 Locale: en-US
 ---
 
@@ -15,6 +15,9 @@ Logs, displays, and outputs log messages after adding metadata such as timestamp
 
 ConvertTo-DnsFqdn [[-ComputerName] <string>] [[-ThisHostName] <string>] [[-WhoAmI] <string>] [[-LogBuffer] <hashtable>]
 
+
+### [Export-LogCsv](Export-LogCsv.md)
+Export a hashtable of log message objects to a CSV file.
 
 ### [Get-CurrentHostname](Get-CurrentHostname.md)
 

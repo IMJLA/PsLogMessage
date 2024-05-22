@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.51] - 2024-05-22 - implement export-logcsv
+
+## [1.0.50] - 2024-05-22 - implement export-logcsv
+
+## [1.0.49] - 2024-05-22 - implement export-logcsv
+
+## [1.0.48] - 2024-05-22 - implement export-logcsv
+
 ## [1.0.47] - 2024-05-12 - add uint16 support
 
 ## [1.0.46] - 2024-05-12 - attempting to remove null parameters
