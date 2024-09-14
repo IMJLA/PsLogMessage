@@ -60,12 +60,18 @@ function ConvertTo-PSCodeString {
     if ($InputObject) {
         switch ($InputObject.GetType().FullName) {
             'System.Collections.Hashtable' {
-                $KeyStrings = ForEach ($OriginalKey in $InputObject.Keys) {
+                $Strings = ForEach ($OriginalKey in $InputObject.Keys) {
                     $Key = ConvertTo-PSCodeString -InputObject $OriginalKey
                     $Value = ConvertTo-PSCodeString -InputObject $InputObject[$OriginalKey]
                     "$Key=$Value"
                 }
-                "@{$($KeyStrings -join ';')}"
+                "@{$($Strings -join ';')}"
+            }
+            'System.Object[]' {
+                $Strings = ForEach ($Object in $InputObject) {
+                    ConvertTo-PSCodeString -InputObject $Object
+                }
+                "@($($Strings -join ','))"
             }
             'System.String' {
                 if ($InputObject.Contains("'")) {
@@ -390,6 +396,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
