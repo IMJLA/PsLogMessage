@@ -35,6 +35,53 @@ function ConvertTo-DnsFqdn {
     [System.Net.Dns]::GetHostByName($ComputerName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
 
 }
+function ConvertTo-PSCodeString {
+
+    <#
+        .SYNOPSIS
+            Convert an object or array of objects into a code string which could be converted into a ScriptBlock with valid PowerShell syntax
+        .DESCRIPTION
+            Originally used for hashtables and arrays
+        .INPUTS
+        $InputObject parameter
+        .OUTPUTS
+        [System.String] Resulting PowerShell code
+    #>
+    [OutputType([System.String])]
+    [CmdletBinding()]
+
+    param (
+
+        # Object to convert to a PowerShell code string
+        $InputObject
+
+    )
+
+    if ($InputObject) {
+        switch ($InputObject.GetType().FullName) {
+            'System.Collections.Hashtable' {
+                $KeyStrings = ForEach ($OriginalKey in $InputObject.Keys) {
+                    $Key = ConvertTo-PSCodeString -InputObject $OriginalKey
+                    $Value = ConvertTo-PSCodeString -InputObject $InputObject[$OriginalKey]
+                    "$Key=$Value"
+                }
+                "@{$($KeyStrings -join ';')}"
+            }
+            'System.String' {
+                if ($InputObject.Contains("'")) {
+                    $Value = $InputObject.Replace('"', '`"')
+                    "`"$Value`""
+                } else {
+                    "'$InputObject'"
+                }
+            }
+            default { "$InputObject" }
+        }
+    } else {
+        "`$null"
+    }
+
+}
 function Export-LogCsv {
 
     <#
@@ -339,10 +386,12 @@ ForEach ($ThisFile in $CSharpFiles) {
     Add-Type -Path $ThisFile.FullName -ErrorAction Stop
 }
 #>
-Export-ModuleMember -Function @('ConvertTo-DnsFqdn','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
 
 
 

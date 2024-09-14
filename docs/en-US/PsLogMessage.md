@@ -2,7 +2,7 @@
 Module Name: PsLogMessage
 Module Guid: 2d9d8fd4-afc2-45e9-93b3-5939c590adc7
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.52
+Help Version: 1.0.54
 Locale: en-US
 ---
 
@@ -15,6 +15,9 @@ Logs, displays, and outputs log messages after adding metadata such as timestamp
 
 ConvertTo-DnsFqdn [[-ComputerName] <string>] [[-ThisHostName] <string>] [[-WhoAmI] <string>] [[-LogBuffer] <hashtable>]
 
+
+### [ConvertTo-PSCodeString](ConvertTo-PSCodeString.md)
+Convert an object or array of objects into a code string which could be converted into a ScriptBlock with valid PowerShell syntax
 
 ### [Export-LogCsv](Export-LogCsv.md)
 Export a hashtable of log message objects to a CSV file.
