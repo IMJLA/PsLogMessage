@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.56] - 2024-09-15 - actually don't know but won't let that stop me
+
 ## [1.0.55] - 2024-09-14 - add array support
 
 ## [1.0.54] - 2024-09-14 - convertto-pscodestring initial release

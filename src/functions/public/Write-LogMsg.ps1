@@ -65,6 +65,7 @@ function Write-LogMsg {
         #>
         [hashtable[]]$Expand,
 
+        # what is this
         [hashtable]$ExpandKeyMap = @{ Output = '$Parents' ; TargetPath = '$Parents' }
 
     )
@@ -79,37 +80,38 @@ function Write-LogMsg {
     $Command = $PSCallStack[1].Command
 
     ForEach ($Splat in $Expand) {
-        ForEach ($Key in $Splat.Keys) {
-            $Value = $ExpandKeyMap[$Key]
-            if (-not $Value) {
-                $Value = $Splat[$Key]
-                if ($Value) {
-                    switch ($Value.GetType().FullName) {
+        ForEach ($ParamName in $Splat.Keys) {
+            $ParamValue = $ExpandKeyMap[$ParamName] # what is this
+            if (-not $ParamValue) {
+                $ParamValue = $Splat[$ParamName]
+                if ($ParamValue) {
+                    switch ($ParamValue.GetType().FullName) {
                         'System.Collections.Hashtable' {
-                            $Value = "`$$Key"
+                            $ParamValue = "`$$ParamName"
                             break
                         }
                         'System.Collections.Hashtable+SyncHashtable' {
-                            $Value = "`$$Key"
+                            $ParamValue = "`$$ParamName"
                             break
                         }
                         'System.Int32' {
-                            $Value = "($Value)"
+                            $ParamValue = "($ParamValue)" # why the paren?
                             break
                         }
                         'System.UInt16' {
-                            $Value = "($Value)"
+                            $ParamValue = "($ParamValue)" # why the paren?
                             break
                         }
                         default {
-                            $Value = "'$Value'"
+                            $ParamValue = "'$ParamValue'"
                         }
                     }
                 } else {
-                    continue #Hopefully this skips the whole appending of this parameter but I'm not sure it will 'continue' in the right scope
+                    # Hopefully this skips appending this parameter but I'm not sure it will 'continue' in the right ForEach scope due to the nesting
+                    continue
                 }
             }
-            $Text = "$Text -$Key $Value"
+            $Text = "$Text -$ParamName $ParamValue"
         }
     }
 

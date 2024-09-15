@@ -883,7 +883,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ExpandKeyMap</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ExpandKeyMap Description }}</maml:para>
+            <maml:para>what is this</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">System.Collections.Hashtable</command:parameterValue>
           <dev:type>
@@ -1006,7 +1006,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ExpandKeyMap</maml:name>
         <maml:description>
-          <maml:para>{{ Fill ExpandKeyMap Description }}</maml:para>
+          <maml:para>what is this</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">System.Collections.Hashtable</command:parameterValue>
         <dev:type>

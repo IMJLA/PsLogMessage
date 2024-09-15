@@ -6,9 +6,9 @@ function ConvertTo-PSCodeString {
         .DESCRIPTION
             Originally used for hashtables and arrays
         .INPUTS
-        $InputObject parameter
+            $InputObject parameter
         .OUTPUTS
-        [System.String] Resulting PowerShell code
+            [System.String] Resulting PowerShell code
     #>
     [OutputType([System.String])]
     [CmdletBinding()]
