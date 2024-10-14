@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.61] - 2024-10-13 - add debug pause
+
 ## [1.0.60] - 2024-10-13 - add obj array support
 
 ## [1.0.59] - 2024-10-13 - add obj array support
