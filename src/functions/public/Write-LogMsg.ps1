@@ -107,7 +107,6 @@ function Write-LogMsg {
                             break
                         }
                         default {
-                            if ($ParamName -eq 'PropertiesToLoad') { pause }
                             $ParamValue = "'$ParamValue'"
                         }
                     }
