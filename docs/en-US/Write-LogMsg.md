@@ -107,7 +107,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: @{ Output = '$Parents' ; TargetPath = '$Parents' }
+Default value: @{}
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

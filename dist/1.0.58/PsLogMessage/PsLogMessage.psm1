@@ -288,7 +288,7 @@ function Write-LogMsg {
         [hashtable[]]$Expand,
 
         # what is this
-        [hashtable]$ExpandKeyMap = @{ Output = '$Parents' ; TargetPath = '$Parents' }
+        [hashtable]$ExpandKeyMap = @{}
 
     )
 
@@ -317,11 +317,15 @@ function Write-LogMsg {
                             break
                         }
                         'System.Int32' {
-                            $ParamValue = "($ParamValue)" # why the paren?
+                            $ParamValue = "($ParamValue)" # paren to encapsulate negative values
                             break
                         }
                         'System.UInt16' {
-                            $ParamValue = "($ParamValue)" # why the paren?
+                            $ParamValue = "($ParamValue)" # paren to encapsulate negative values
+                            break
+                        }
+                        'System.String[]' {
+                            $ParamValue = "@('$($ParamValue -join "','")')"
                             break
                         }
                         default {
@@ -339,7 +343,7 @@ function Write-LogMsg {
 
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
-        $MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$($Type)`t$($Text)"
+        $MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$Type`t$Text"
     } else {
         $MessageToLog = $Text
     }
@@ -398,6 +402,8 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
 
 
 

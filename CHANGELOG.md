@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.58] - 2024-10-13 - remove unnecessary default value, and add support for string arrays, and simply string assembly
+
+## [1.0.57] - 2024-10-13 - remove unnecessary default value, and add support for string arrays, and simplify string assembly
+
 ## [1.0.56] - 2024-09-15 - actually don't know but won't let that stop me
 
 ## [1.0.55] - 2024-09-14 - add array support
