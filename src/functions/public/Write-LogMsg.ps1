@@ -102,6 +102,10 @@ function Write-LogMsg {
                             $ParamValue = "($ParamValue)" # paren to encapsulate negative values
                             break
                         }
+                        'System.Object[]' {
+                            $ParamValue = "@('$($ParamValue -join "','")')"
+                            break
+                        }
                         'System.String[]' {
                             $ParamValue = "@('$($ParamValue -join "','")')"
                             break

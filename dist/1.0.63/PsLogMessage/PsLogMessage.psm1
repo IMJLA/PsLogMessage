@@ -324,6 +324,10 @@ function Write-LogMsg {
                             $ParamValue = "($ParamValue)" # paren to encapsulate negative values
                             break
                         }
+                        'System.Object[]' {
+                            $ParamValue = "@('$($ParamValue -join "','")')"
+                            break
+                        }
                         'System.String[]' {
                             $ParamValue = "@('$($ParamValue -join "','")')"
                             break
@@ -402,6 +406,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
