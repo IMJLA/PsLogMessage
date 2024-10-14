@@ -333,6 +333,7 @@ function Write-LogMsg {
                             break
                         }
                         default {
+                            if ($ParamName -eq 'CurrentDomain') { pause }
                             $ParamValue = "'$ParamValue'"
                         }
                     }
@@ -406,6 +407,9 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
+
 
 
 

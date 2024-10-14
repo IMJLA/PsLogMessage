@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.66] - 2024-10-13 - add debug pause
+
+## [1.0.65] - 2024-10-13 - add debug pause
+
+## [1.0.64] - 2024-10-13 - add debug pause
+
 ## [1.0.63] - 2024-10-13 - add system.object[] support
 
 ## [1.0.62] - 2024-10-13 - remove debug pause, update psakefile
