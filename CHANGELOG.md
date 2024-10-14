@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.60] - 2024-10-13 - add obj array support
+
+## [1.0.59] - 2024-10-13 - add obj array support
+
 ## [1.0.58] - 2024-10-13 - remove unnecessary default value, and add support for string arrays, and simply string assembly
 
 ## [1.0.57] - 2024-10-13 - remove unnecessary default value, and add support for string arrays, and simplify string assembly

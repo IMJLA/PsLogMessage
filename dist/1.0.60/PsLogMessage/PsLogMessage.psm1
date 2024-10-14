@@ -287,7 +287,7 @@ function Write-LogMsg {
         #>
         [hashtable[]]$Expand,
 
-        # what is this
+        # Used to override key-value pairs in the Expand parameter.
         [hashtable]$ExpandKeyMap = @{}
 
     )
@@ -303,7 +303,7 @@ function Write-LogMsg {
 
     ForEach ($Splat in $Expand) {
         ForEach ($ParamName in $Splat.Keys) {
-            $ParamValue = $ExpandKeyMap[$ParamName] # what is this
+            $ParamValue = $ExpandKeyMap[$ParamName]
             if (-not $ParamValue) {
                 $ParamValue = $Splat[$ParamName]
                 if ($ParamValue) {
@@ -322,6 +322,10 @@ function Write-LogMsg {
                         }
                         'System.UInt16' {
                             $ParamValue = "($ParamValue)" # paren to encapsulate negative values
+                            break
+                        }
+                        'System.Object[]' {
+                            $ParamValue = "@('$($ParamValue -join "','")')"
                             break
                         }
                         'System.String[]' {
@@ -402,6 +406,8 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
 
 
 

@@ -98,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExpandKeyMap
-what is this
+Used to override key-value pairs in the Expand parameter.
 
 ```yaml
 Type: System.Collections.Hashtable
