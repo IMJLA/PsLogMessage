@@ -332,6 +332,10 @@ function Write-LogMsg {
                             $ParamValue = "@('$($ParamValue -join "','")')"
                             break
                         }
+                        'System.Management.Automation.PSCustomObject' {
+                            $ParamValue = "[PSCustomObject]$ParamValue"
+                            break
+                        }
                         default {
                             if ($ParamName -eq 'CurrentDomain') { pause }
                             $ParamValue = "'$ParamValue'"
@@ -407,6 +411,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

@@ -110,6 +110,10 @@ function Write-LogMsg {
                             $ParamValue = "@('$($ParamValue -join "','")')"
                             break
                         }
+                        'System.Management.Automation.PSCustomObject' {
+                            $ParamValue = "[PSCustomObject]$ParamValue"
+                            break
+                        }
                         default {
                             if ($ParamName -eq 'CurrentDomain') { pause }
                             $ParamValue = "'$ParamValue'"

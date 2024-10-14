@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.67] - 2024-10-13 - add pscustomobject support surface level only, does not support nested psobjects in properties
+
 ## [1.0.66] - 2024-10-13 - add debug pause
 
 ## [1.0.65] - 2024-10-13 - add debug pause
