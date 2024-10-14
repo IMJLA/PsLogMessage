@@ -115,7 +115,6 @@ function Write-LogMsg {
                             break
                         }
                         default {
-                            if ($ParamName -eq 'CurrentDomain') { pause }
                             $ParamValue = "'$ParamValue'"
                         }
                     }
