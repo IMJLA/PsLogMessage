@@ -260,6 +260,9 @@ function Write-LogMsg {
         [ValidateSet('Silent', 'Quiet', 'Success', 'Debug', 'Verbose', 'Output', 'Host', 'Warning', 'Error', 'Information', $null)]
         [string]$Type = 'Information',
 
+        # Suffix to append to the end of the string
+        [string]$Suffix,
+
         # Add a prefix to the message including the date, hostname, current user, and info about the current call stack
         [bool]$AddPrefix = $true,
 
@@ -367,9 +370,9 @@ function Write-LogMsg {
 
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
-        $MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$Type`t$Text"
+        $MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$Type`t$Text$Suffix"
     } else {
-        $MessageToLog = $Text
+        $MessageToLog = "$Text$Suffix"
     }
 
     Switch ($Type) {
@@ -426,6 +429,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 

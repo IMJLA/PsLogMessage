@@ -443,6 +443,9 @@ $pesterPreReqs = {
 }
 
 task UnitTests -depends Lint -precondition $pesterPreReqs {
+
+    Write-Host "`tInvoke-Pester -Configuration `$PesterConfiguration"
+
     $pesterParams = @{
         Path                         = $TestRootDir
         ModuleName                   = $env:BHProjectName

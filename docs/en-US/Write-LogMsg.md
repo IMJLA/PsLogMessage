@@ -14,7 +14,7 @@ Writes a message to a log file and/or PowerShell output stream
 ## SYNTAX
 
 ```
-Write-LogMsg [[-Text] <String>] [-Type <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
+Write-LogMsg [[-Text] <String>] [-Type <String>] [-Suffix <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
  [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] [-Buffer <Hashtable>]
  [-Expand <Hashtable[]>] [-ExpandKeyMap <Hashtable>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
@@ -149,6 +149,21 @@ Accept wildcard characters: False
 Type: System.Management.Automation.ActionPreference
 Parameter Sets: (All)
 Aliases: proga
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Suffix
+Suffix to append to the end of the string
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named
