@@ -81,12 +81,19 @@ function Write-LogMsg {
     $Command = $Caller.Command
 
     ForEach ($Splat in $Expand) {
+
         ForEach ($ParamName in $Splat.Keys) {
+
             $ParamValue = $ExpandKeyMap[$ParamName]
+
             if (-not $ParamValue) {
+
                 $ParamValue = $Splat[$ParamName]
+
                 if ($ParamValue) {
+
                     switch ($ParamValue.GetType().FullName) {
+
                         'System.Collections.Hashtable' {
                             $ParamValue = "`$$ParamName"
                             break
@@ -118,14 +125,22 @@ function Write-LogMsg {
                         default {
                             $ParamValue = "'$ParamValue'"
                         }
+
                     }
+
                 } else {
+
                     # Hopefully this skips appending this parameter but I'm not sure it will 'continue' in the right ForEach scope due to the nesting
                     continue
+
                 }
+
             }
+
             $Text = "$Text -$ParamName $ParamValue"
+
         }
+
     }
 
     if ($AddPrefix) {
@@ -152,6 +167,7 @@ function Write-LogMsg {
         'Error' { Write-Error $MessageToLog ; break }
         'Output' { $OutputToPipeline = $true ; break }
         default { Write-Information "INFO:    $MessageToLog" ; break }
+
     }
 
     if ($PSBoundParameters.ContainsKey('LogFile')) {
@@ -164,9 +180,8 @@ function Write-LogMsg {
 
     # Add a GUID to the timestamp and use it as a unique key in the hashtable of log messages
     [string]$Guid = [guid]::NewGuid()
-    [string]$Key = "$Timestamp$Guid"
 
-    $Buffer[$Key] = [pscustomobject]@{
+    $Buffer["$Timestamp$Guid"] = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI

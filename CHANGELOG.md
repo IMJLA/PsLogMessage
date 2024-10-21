@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.70] - 2024-10-20 - minor cleanup
+
 ## [1.0.69] - 2024-10-20 - minor cleanup
 
 ## [1.0.68] - 2024-10-13 - remove debug pause
