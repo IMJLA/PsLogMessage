@@ -298,8 +298,9 @@ function Write-LogMsg {
     $Timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.ffffK'
     $OutputToPipeline = $false
     $PSCallStack = Get-PSCallStack
-    $Location = $PSCallStack[1].Location
-    $Command = $PSCallStack[1].Command
+    $Caller = $PSCallStack[1]
+    $Location = $Caller.Location
+    $Command = $Caller.Command
 
     ForEach ($Splat in $Expand) {
         ForEach ($ParamName in $Splat.Keys) {
@@ -410,6 +411,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
