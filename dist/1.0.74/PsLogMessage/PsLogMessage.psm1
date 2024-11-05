@@ -20,7 +20,8 @@ function ConvertTo-DnsFqdn {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$LogBuffer = @{}
+        [Parameter(Mandatory)]
+        [ref]$LogBuffer
 
     )
 
@@ -431,6 +432,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
