@@ -14,7 +14,8 @@ schema: 2.0.0
 
 ```
 ConvertTo-DnsFqdn [[-ComputerName] <String>] [[-ThisHostName] <String>] [[-WhoAmI] <String>]
- [-LogBuffer] <PSReference> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ [-LogBuffer] <PSReference> [[-DebugOutputStream] <String>] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,6 +42,22 @@ Aliases:
 
 Required: False
 Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DebugOutputStream
+{{ Fill DebugOutputStream Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+Accepted values: Silent, Quiet, Success, Debug, Verbose, Output, Host, Warning, Error, Information, 
+
+Required: False
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

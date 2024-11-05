@@ -21,13 +21,17 @@ function ConvertTo-DnsFqdn {
 
         # Log messages which have not yet been written to disk
         [Parameter(Mandatory)]
-        [ref]$LogBuffer
+        [ref]$LogBuffer,
+
+        # Output stream to send the log messages to
+        [ValidateSet('Silent', 'Quiet', 'Success', 'Debug', 'Verbose', 'Output', 'Host', 'Warning', 'Error', 'Information', $null)]
+        [String]$DebugOutputStream = 'Debug'
 
     )
 
     $Log = @{
         ThisHostname = $ThisHostname
-        Type         = 'Debug'
+        Type         = $DebugOutputStream
         Buffer       = $LogBuffer
         WhoAmI       = $WhoAmI
     }
@@ -432,6 +436,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
