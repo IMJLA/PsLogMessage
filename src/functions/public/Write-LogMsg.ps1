@@ -57,7 +57,8 @@ function Write-LogMsg {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{},
+        [Parameter(Mandatory)]
+        [ref]$Buffer,
 
         <#
         Splats for the command at the end of the -Text parameter.
@@ -184,7 +185,7 @@ function Write-LogMsg {
     # Add a GUID to the timestamp and use it as a unique key in the hashtable of log messages
     [string]$Guid = [guid]::NewGuid()
 
-    $Buffer["$Timestamp$Guid"] = [pscustomobject]@{
+    $Obj = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI
@@ -194,5 +195,7 @@ function Write-LogMsg {
         Type      = $Type
         Text      = $Text
     }
+
+    $Buffer.Value.AddOrUpdate( "$Timestamp$Guid" , $Obj, { param($key, $val) $val } )
 
 }

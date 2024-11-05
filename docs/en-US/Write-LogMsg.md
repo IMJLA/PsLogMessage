@@ -15,7 +15,7 @@ Writes a message to a log file and/or PowerShell output stream
 
 ```
 Write-LogMsg [[-Text] <String>] [-Type <String>] [-Suffix <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
- [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] [-Buffer <Hashtable>]
+ [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] -Buffer <PSReference>
  [-Expand <Hashtable[]>] [-ExpandKeyMap <Hashtable>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
@@ -67,13 +67,13 @@ Accept wildcard characters: False
 Log messages which have not yet been written to disk
 
 ```yaml
-Type: System.Collections.Hashtable
+Type: System.Management.Automation.PSReference
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: @{}
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -13,9 +13,9 @@ Export a hashtable of log message objects to a CSV file.
 ## SYNTAX
 
 ```
-Export-LogCsv [[-LogFile] <String>] [[-Buffer] <Hashtable>] [[-ThisHostName] <String>] [[-WhoAmI] <String>]
- [[-LogBuffer] <Hashtable>] [[-DebugOutputStream] <String>] [[-ProgressParentId] <Int32>]
- [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Export-LogCsv [[-LogFile] <String>] [-Buffer] <PSReference> [[-ThisHostName] <String>] [[-WhoAmI] <String>]
+ [[-DebugOutputStream] <String>] [[-ProgressParentId] <Int32>] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,13 +38,13 @@ PS C:\> {{ Add example code here }}
 Log messages which have not yet been written to disk
 
 ```yaml
-Type: System.Collections.Hashtable
+Type: System.Management.Automation.PSReference
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 2
-Default value: @{}
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -58,23 +58,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 6
-Default value: Debug
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LogBuffer
-Log messages which have not yet been written to disk
-
-```yaml
-Type: System.Collections.Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
 Position: 5
-Default value: @{}
+Default value: Debug
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -118,7 +103,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 7
+Position: 6
 Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False

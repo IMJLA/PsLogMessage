@@ -20,7 +20,8 @@ function Export-LogCsv {
         [string]$LogFile,
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{},
+        [Parameter(Mandatory)]
+        [ref]$Buffer,
 
         <#
         Hostname of the computer running this function.
@@ -31,9 +32,6 @@ function Export-LogCsv {
 
         # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
         [String]$WhoAmI = (whoami.EXE),
-
-        # Log messages which have not yet been written to disk
-        [Hashtable]$LogBuffer = @{},
 
         # Output stream to send the log messages to
         [ValidateSet('Silent', 'Quiet', 'Success', 'Debug', 'Verbose', 'Output', 'Host', 'Warning', 'Error', 'Information', $null)]
@@ -53,7 +51,7 @@ function Export-LogCsv {
 
     Write-LogMsg @Log -Text "`$Buffer.Values | Sort-Object -Property Timestamp | Export-Csv -Delimiter '$('`t')' -NoTypeInformation -LiteralPath '$LogFile'"
 
-    $Buffer.Values | Sort-Object -Property Timestamp |
+    $Buffer.Value.Values | Sort-Object -Property Timestamp |
     Export-Csv -Delimiter "`t" -NoTypeInformation -LiteralPath $LogFile
 
     # Write the full path of the log file to the Information stream

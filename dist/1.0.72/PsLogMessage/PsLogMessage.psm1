@@ -110,7 +110,8 @@ function Export-LogCsv {
         [string]$LogFile,
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{},
+        [Parameter(Mandatory)]
+        [ref]$Buffer,
 
         <#
         Hostname of the computer running this function.
@@ -121,9 +122,6 @@ function Export-LogCsv {
 
         # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
         [String]$WhoAmI = (whoami.EXE),
-
-        # Log messages which have not yet been written to disk
-        [Hashtable]$LogBuffer = @{},
 
         # Output stream to send the log messages to
         [ValidateSet('Silent', 'Quiet', 'Success', 'Debug', 'Verbose', 'Output', 'Host', 'Warning', 'Error', 'Information', $null)]
@@ -143,7 +141,7 @@ function Export-LogCsv {
 
     Write-LogMsg @Log -Text "`$Buffer.Values | Sort-Object -Property Timestamp | Export-Csv -Delimiter '$('`t')' -NoTypeInformation -LiteralPath '$LogFile'"
 
-    $Buffer.Values | Sort-Object -Property Timestamp |
+    $Buffer.Value.Values | Sort-Object -Property Timestamp |
     Export-Csv -Delimiter "`t" -NoTypeInformation -LiteralPath $LogFile
 
     # Write the full path of the log file to the Information stream
@@ -178,7 +176,8 @@ function Get-CurrentWhoAmI {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$LogBuffer = @{}
+        [Parameter(Mandatory)]
+        [ref]$LogBuffer
 
     )
 
@@ -279,7 +278,8 @@ function Write-LogMsg {
         [string]$WhoAmI = (whoami.EXE),
 
         # Log messages which have not yet been written to disk
-        [hashtable]$Buffer = @{},
+        [Parameter(Mandatory)]
+        [ref]$Buffer,
 
         <#
         Splats for the command at the end of the -Text parameter.
@@ -406,7 +406,7 @@ function Write-LogMsg {
     # Add a GUID to the timestamp and use it as a unique key in the hashtable of log messages
     [string]$Guid = [guid]::NewGuid()
 
-    $Buffer["$Timestamp$Guid"] = [pscustomobject]@{
+    $Obj = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI
@@ -416,6 +416,8 @@ function Write-LogMsg {
         Type      = $Type
         Text      = $Text
     }
+
+    $Buffer.Value.AddOrUpdate( "$Timestamp$Guid" , $Obj, { param($key, $val) $val } )
 
 }
 <#
@@ -429,6 +431,7 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
 
 
 
