@@ -196,6 +196,6 @@ function Write-LogMsg {
         Text      = $Text
     }
 
-    $Buffer.Value.AddOrUpdate( "$Timestamp$Guid" , $Obj, { param($key, $val) $val } )
+    $null = $Buffer.Value.AddOrUpdate( "$Timestamp$Guid" , $Obj, { param($key, $val) $val } )
 
 }
