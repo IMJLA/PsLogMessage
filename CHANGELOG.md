@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.73] - 2024-11-04 - update psakefile
+
 ## [1.0.72] - 2024-11-04 - make log buffer a reference variable
 
 ## [1.0.71] - 2024-10-20 - add suffix support
