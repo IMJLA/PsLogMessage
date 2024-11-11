@@ -138,7 +138,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: @{}
+Default value: (Get-ParamStringMap)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -280,7 +280,7 @@ Task DeleteMarkdownHelp -depends BuildModule -precondition $genMarkdownPreReqs {
 
 Task BuildMarkdownHelp -depends DeleteMarkdownHelp {
     $ManifestPath = [IO.Path]::Combine($env:BHBuildOutput, "$env:BHProjectName.psd1")
-    $moduleInfo = Import-Module $ManifestPath  -Global -Force -PassThru
+    $moduleInfo = Import-Module $ManifestPath -Global -Force -PassThru
     $manifestInfo = Test-ModuleManifest -Path $ManifestPath
     if ($moduleInfo.ExportedCommands.Count -eq 0) {
         Write-Warning 'No commands have been exported. Skipping markdown generation.'
