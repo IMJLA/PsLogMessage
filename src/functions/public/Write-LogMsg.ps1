@@ -26,8 +26,10 @@ function Write-LogMsg {
         .OUTPUTS
         [System.String] Resulting log line, returned if the -PassThru or -Type Output parameters were used
     #>
+
     [OutputType([System.String])]
     [CmdletBinding()]
+
     param(
 
         # Message to log

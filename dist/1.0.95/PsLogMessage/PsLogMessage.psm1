@@ -315,8 +315,10 @@ function Write-LogMsg {
         .OUTPUTS
         [System.String] Resulting log line, returned if the -PassThru or -Type Output parameters were used
     #>
+
     [OutputType([System.String])]
     [CmdletBinding()]
+
     param(
 
         # Message to log
@@ -468,6 +470,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
