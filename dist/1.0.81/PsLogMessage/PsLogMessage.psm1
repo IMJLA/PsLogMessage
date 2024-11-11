@@ -337,58 +337,27 @@ function Write-LogMsg {
 
                 if ($ParamValue) {
 
-                    switch ($ParamValue.GetType().FullName) {
+                    $TypeName = $ParamValue.GetType().FullName
+                    $ValueScript = $ParamStringMap[$TypeName]
 
-                        'System.Collections.Hashtable' {
-                            $ParamValue = "`$$ParamName"
-                            break
-                        }
-                        'System.Collections.Hashtable+SyncHashtable' {
-                            $ParamValue = "`$$ParamName"
-                            break
-                        }
-                        'System.Int32' {
-                            $ParamValue = "($ParamValue)" # paren to encapsulate negative values
-                            break
-                        }
-                        'System.UInt16' {
-                            $ParamValue = "($ParamValue)" # paren to encapsulate negative values
-                            break
-                        }
-                        'System.Object[]' {
-                            $ParamValue = "@('$($ParamValue -join "','")')"
-                            break
-                        }
-                        'System.String[]' {
-                            $ParamValue = Get-ParamValueString -String $ParamValue
-                            $ParamValue = "@($($ParamValue -join ','))"
-                            break
-                        }
-                        'System.Management.Automation.PSCustomObject' {
-                            $ParamValue = "[PSCustomObject]$ParamValue"
-                            break
-                        }
-                        'System.String' {
-                            $ParamValue = Get-ParamValueString -String $ParamValue
-                        }
-                        default {
-                            $ParamValue = "'$ParamValue'"
-                        }
-
+                    if ($ValueScript) {
+                        $ParamValue = Invoke-Command -Command $ValueScript -ArgumentList $ParamName, $ParamValue
+                    } else {
+                        $ParamValue = "'$ParamValue'"
                     }
-
-                } else {
-
-                    # Hopefully this skips appending this parameter but I'm not sure it will 'continue' in the right ForEach scope due to the nesting
-                    continue
 
                 }
 
+            } else {
+
+                # Hopefully this skips appending this parameter but I'm not sure it will 'continue' in the right ForEach scope due to the nesting
+                continue
+
             }
 
-            $Text = "$Text -$ParamName $ParamValue"
-
         }
+
+        $Text = "$Text -$ParamName $ParamValue"
 
     }
 
@@ -455,6 +424,9 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
+
 
 
 
