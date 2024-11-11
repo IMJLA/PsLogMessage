@@ -157,8 +157,6 @@ function Write-LogMsg {
         $MessageToLog
     }
 
-    # Add a GUID to the timestamp and use it as a unique key in the hashtable of log messages
-
     $Obj = [pscustomobject]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname

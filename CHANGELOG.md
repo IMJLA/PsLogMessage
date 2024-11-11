@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.94] - 2024-11-10 - comment cleanup
+
+## [1.0.93] - 2024-11-10 - comment cleanup
+
 ## [1.0.92] - 2024-11-10 - bugfix oops forgot these are ref vars
 
 ## [1.0.91] - 2024-11-10 - use concurrentqueue instead of concurrentdictionary for improved efficiency
