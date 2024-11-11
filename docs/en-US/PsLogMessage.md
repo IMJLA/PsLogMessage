@@ -2,7 +2,7 @@
 Module Name: PsLogMessage
 Module Guid: 2d9d8fd4-afc2-45e9-93b3-5939c590adc7
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.76
+Help Version: 1.0.78
 Locale: en-US
 ---
 

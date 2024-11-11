@@ -119,12 +119,16 @@ function Write-LogMsg {
                             break
                         }
                         'System.String[]' {
-                            $ParamValue = "@('$($ParamValue -join "','")')"
+                            $ParamValue = Get-ParamValueString -String $ParamValue
+                            $ParamValue = "@($($ParamValue -join ','))"
                             break
                         }
                         'System.Management.Automation.PSCustomObject' {
                             $ParamValue = "[PSCustomObject]$ParamValue"
                             break
+                        }
+                        'System.String' {
+                            $ParamValue = Get-ParamValueString -String $ParamValue
                         }
                         default {
                             $ParamValue = "'$ParamValue'"

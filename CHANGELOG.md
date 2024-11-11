@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.78] - 2024-11-10 - handle quotes in strings
+
+## [1.0.77] - 2024-11-10 - handle quotes in strings
+
 ## [1.0.76] - 2024-11-04 - add missing param
 
 ## [1.0.75] - 2024-11-04 - bugfix capture output from addorupdate

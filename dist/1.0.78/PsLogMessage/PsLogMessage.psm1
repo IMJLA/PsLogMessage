@@ -1,4 +1,19 @@
 
+function Get-ParamValueString {
+
+    param ([string[]]$String)
+
+    ForEach ($CurrentString in $String) {
+
+        if ($CurrentString.Contains("'")) {
+            "`"$CurrentString`""
+        } else {
+            "'$CurrentString'"
+        }
+
+    }
+
+}
 function ConvertTo-DnsFqdn {
 
     # Output the results of a DNS lookup to the default DNS server for the specified
@@ -345,12 +360,16 @@ function Write-LogMsg {
                             break
                         }
                         'System.String[]' {
-                            $ParamValue = "@('$($ParamValue -join "','")')"
+                            $ParamValue = Get-ParamValueString -String $ParamValue
+                            $ParamValue = "@($($ParamValue -join ','))"
                             break
                         }
                         'System.Management.Automation.PSCustomObject' {
                             $ParamValue = "[PSCustomObject]$ParamValue"
                             break
+                        }
+                        'System.String' {
+                            $ParamValue = Get-ParamValueString -String $ParamValue
                         }
                         default {
                             $ParamValue = "'$ParamValue'"
@@ -436,6 +455,8 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
 
 
 
