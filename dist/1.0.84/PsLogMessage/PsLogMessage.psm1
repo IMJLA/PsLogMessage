@@ -311,7 +311,9 @@ function Write-LogMsg {
         [hashtable[]]$Expand,
 
         # Used to override key-value pairs in the Expand parameter.
-        [hashtable]$ExpandKeyMap = @{}
+        [hashtable]$ExpandKeyMap = @{},
+
+        [hashtable]$ParamStringMap = @{}
 
     )
 
@@ -424,6 +426,9 @@ Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Ex
 
 #$Global:LogMessages = [system.collections.generic.list[pscustomobject]]::new()
 $Global:LogMessages = [hashtable]::Synchronized(@{})
+
+
+
 
 
 

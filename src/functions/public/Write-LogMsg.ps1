@@ -70,7 +70,9 @@ function Write-LogMsg {
         [hashtable[]]$Expand,
 
         # Used to override key-value pairs in the Expand parameter.
-        [hashtable]$ExpandKeyMap = @{}
+        [hashtable]$ExpandKeyMap = @{},
+
+        [hashtable]$ParamStringMap = @{}
 
     )
 

@@ -16,7 +16,8 @@ Writes a message to a log file and/or PowerShell output stream
 ```
 Write-LogMsg [[-Text] <String>] [-Type <String>] [-Suffix <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
  [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] -Buffer <PSReference>
- [-Expand <Hashtable[]>] [-ExpandKeyMap <Hashtable>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ [-Expand <Hashtable[]>] [-ExpandKeyMap <Hashtable>] [-ParamStringMap <Hashtable>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -123,6 +124,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ParamStringMap
+{{ Fill ParamStringMap Description }}
+
+```yaml
+Type: System.Collections.Hashtable
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: @{}
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

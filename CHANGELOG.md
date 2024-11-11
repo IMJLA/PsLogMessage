@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.84] - 2024-11-10 - troubleshoot build
+
+## [1.0.83] - 2024-11-10 - efficiency improvement over switch stmt
+
+## [1.0.82] - 2024-11-10 - efficiency improvement over switch stmt
+
 ## [1.0.81] - 2024-11-10 - troubleshoot build
 
 ## [1.0.80] - 2024-11-10 - efficiency improvement over switch stmt
