@@ -884,9 +884,7 @@
     <maml:description>
       <maml:para>Prepends the log message with:     a current timestamp     the current hostname     the current username     the current command (function or file name)     the current location (line number in the code)</maml:para>
       <maml:para>Tab-delimits these fields for a compromise between readability and parseability</maml:para>
-      <maml:para>Adds the log message to either: * a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $Buffer parameter</maml:para>
-      <maml:para>* a Global:$LogMessages variable which was created by the PsLogMessage module during import</maml:para>
-      <maml:para></maml:para>
+      <maml:para>Adds the log message to a ConcurrentQueue which was passed to the $Buffer parameter</maml:para>
       <maml:para>Optionally writes the message to a log file</maml:para>
       <maml:para>Optionally writes the message to a PowerShell output stream</maml:para>
     </maml:description>

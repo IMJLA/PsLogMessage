@@ -30,9 +30,7 @@ Prepends the log message with:
 
 Tab-delimits these fields for a compromise between readability and parseability
 
-Adds the log message to either:
-* a hashtable (which can be thread-safe) using the timestamp as the key, which was passed to the $Buffer parameter
-* a Global:$LogMessages variable which was created by the PsLogMessage module during import
+Adds the log message to a ConcurrentQueue which was passed to the $Buffer parameter
 
 Optionally writes the message to a log file
 

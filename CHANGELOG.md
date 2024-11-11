@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.96] - 2024-11-10 - comment cleanup
+
 ## [1.0.95] - 2024-11-10 - spacing
 
 ## [1.0.94] - 2024-11-10 - comment cleanup
