@@ -209,7 +209,7 @@ function Export-LogCsv {
 
     Write-LogMsg @Log -Text "`$Buffer.Values | Sort-Object -Property Timestamp | Export-Csv -Delimiter '$('`t')' -NoTypeInformation -LiteralPath '$LogFile'"
 
-    $Buffer.GetEnumerator() |
+    $Buffer.Value.GetEnumerator() |
     Export-Csv -Delimiter "`t" -NoTypeInformation -LiteralPath $LogFile
 
     # Write the full path of the log file to the Information stream
@@ -459,7 +459,7 @@ function Write-LogMsg {
         Text      = $Text
     }
 
-    $null = $Buffer.Enqueue($Obj)
+    $null = $Buffer.Value.Enqueue($Obj)
 
 }
 <#
@@ -470,6 +470,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+
 
 
 

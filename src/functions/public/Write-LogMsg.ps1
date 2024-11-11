@@ -170,6 +170,6 @@ function Write-LogMsg {
         Text      = $Text
     }
 
-    $null = $Buffer.Enqueue($Obj)
+    $null = $Buffer.Value.Enqueue($Obj)
 
 }
