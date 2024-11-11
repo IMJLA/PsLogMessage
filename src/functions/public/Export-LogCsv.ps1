@@ -51,7 +51,7 @@ function Export-LogCsv {
 
     Write-LogMsg @Log -Text "`$Buffer.Values | Sort-Object -Property Timestamp | Export-Csv -Delimiter '$('`t')' -NoTypeInformation -LiteralPath '$LogFile'"
 
-    $Buffer.Value.Values | Sort-Object -Property Timestamp |
+    $Buffer.GetEnumerator() |
     Export-Csv -Delimiter "`t" -NoTypeInformation -LiteralPath $LogFile
 
     # Write the full path of the log file to the Information stream

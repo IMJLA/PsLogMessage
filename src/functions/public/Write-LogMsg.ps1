@@ -158,7 +158,6 @@ function Write-LogMsg {
     }
 
     # Add a GUID to the timestamp and use it as a unique key in the hashtable of log messages
-    [string]$Guid = [guid]::NewGuid()
 
     $Obj = [pscustomobject]@{
         Timestamp = $Timestamp
@@ -171,6 +170,6 @@ function Write-LogMsg {
         Text      = $Text
     }
 
-    $null = $Buffer.Value.AddOrUpdate( "$Timestamp$Guid" , $Obj, { param($key, $val) $val } )
+    $null = $Buffer.Enqueue($Obj)
 
 }

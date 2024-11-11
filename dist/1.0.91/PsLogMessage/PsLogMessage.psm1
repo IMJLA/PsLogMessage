@@ -209,7 +209,7 @@ function Export-LogCsv {
 
     Write-LogMsg @Log -Text "`$Buffer.Values | Sort-Object -Property Timestamp | Export-Csv -Delimiter '$('`t')' -NoTypeInformation -LiteralPath '$LogFile'"
 
-    $Buffer.Value.Values | Sort-Object -Property Timestamp |
+    $Buffer.GetEnumerator() |
     Export-Csv -Delimiter "`t" -NoTypeInformation -LiteralPath $LogFile
 
     # Write the full path of the log file to the Information stream
@@ -447,7 +447,6 @@ function Write-LogMsg {
     }
 
     # Add a GUID to the timestamp and use it as a unique key in the hashtable of log messages
-    [string]$Guid = [guid]::NewGuid()
 
     $Obj = [pscustomobject]@{
         Timestamp = $Timestamp
@@ -460,7 +459,7 @@ function Write-LogMsg {
         Text      = $Text
     }
 
-    $null = $Buffer.Value.AddOrUpdate( "$Timestamp$Guid" , $Obj, { param($key, $val) $val } )
+    $null = $Buffer.Enqueue($Obj)
 
 }
 <#
@@ -471,6 +470,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
