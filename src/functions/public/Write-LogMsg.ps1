@@ -107,18 +107,18 @@ function Write-LogMsg {
                         $ParamValue = "'$ParamValue'"
                     }
 
+                } else {
+
+                    # Hopefully this skips appending this parameter but I'm not sure it will 'continue' in the right ForEach scope due to the nesting
+                    continue
+
                 }
-
-            } else {
-
-                # Hopefully this skips appending this parameter but I'm not sure it will 'continue' in the right ForEach scope due to the nesting
-                continue
 
             }
 
-        }
+            $Text = "$Text -$ParamName $ParamValue"
 
-        $Text = "$Text -$ParamName $ParamValue"
+        }
 
     }
 

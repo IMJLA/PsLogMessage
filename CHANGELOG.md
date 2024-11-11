@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.90] - 2024-11-10 - bugfix or maybe making it worse
+
 ## [1.0.89] - 2024-11-10 - hashtable efficiency improvement over switch stmt
 
 ## [1.0.88] - 2024-11-10 - hashtable efficiency improvement over switch stmt
