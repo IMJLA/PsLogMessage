@@ -157,7 +157,7 @@ function Write-LogMsg {
         $MessageToLog
     }
 
-    $Obj = [pscustomobject]@{
+    $Obj = @{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI

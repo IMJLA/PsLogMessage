@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.99] - 2024-11-11 - hashtable is more lightweight and still works with csv conversion/export
+
 ## [1.0.98] - 2024-11-11 - bugfix null detection
 
 ## [1.0.97] - 2024-11-11 - bugfix null detection

@@ -446,7 +446,7 @@ function Write-LogMsg {
         $MessageToLog
     }
 
-    $Obj = [pscustomobject]@{
+    $Obj = @{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI
@@ -468,6 +468,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
