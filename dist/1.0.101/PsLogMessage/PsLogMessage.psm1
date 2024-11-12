@@ -44,6 +44,11 @@ function Get-ParamStringMap {
             Get-ParamValueString -String $ParamValue
         }
 
+        'System.Boolean'                              = {
+            param ($ParamName, $ParamValue)
+            "`$$ParamValue"
+        }
+
     }
 
 }
@@ -468,6 +473,8 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+
+
 
 
 

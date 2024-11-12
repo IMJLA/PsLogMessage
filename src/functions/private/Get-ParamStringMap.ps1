@@ -43,6 +43,11 @@ function Get-ParamStringMap {
             Get-ParamValueString -String $ParamValue
         }
 
+        'System.Boolean'                              = {
+            param ($ParamName, $ParamValue)
+            "`$$ParamValue"
+        }
+
     }
 
 }
