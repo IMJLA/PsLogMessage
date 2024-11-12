@@ -92,11 +92,11 @@ function Write-LogMsg {
 
             $ParamValue = $ExpandKeyMap[$ParamName]
 
-            if (-not $ParamValue) {
+            if ($null -eq $ParamValue) {
 
                 $ParamValue = $Splat[$ParamName]
 
-                if ($ParamValue) {
+                if ($null -ne $ParamValue) {
 
                     $TypeName = $ParamValue.GetType().FullName
                     $ValueScript = $ParamStringMap[$TypeName]
