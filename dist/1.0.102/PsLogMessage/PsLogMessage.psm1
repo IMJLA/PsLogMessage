@@ -3,48 +3,53 @@ function Get-ParamStringMap {
 
     return @{
 
-        'System.Collections.Hashtable'                = {
+        'System.Collections.Hashtable'                 = {
             param ($ParamName, $ParamValue)
             "`$$ParamName"
         }
 
-        'System.Collections.Hashtable+SyncHashtable'  = {
+        'System.Collections.Hashtable+SyncHashtable'   = {
             param ($ParamName, $ParamValue)
             "`$$ParamName"
         }
 
-        'System.Int32'                                = {
+        'System.Int32'                                 = {
             param ($ParamName, $ParamValue)
             "($ParamValue)" # paren to encapsulate negative values
         }
 
-        'System.UInt16'                               = {
+        'System.UInt16'                                = {
             param ($ParamName, $ParamValue)
             "($ParamValue)" # paren to encapsulate negative values
         }
 
-        'System.Object[]'                             = {
+        'System.Object[]'                              = {
             param ($ParamName, $ParamValue)
             "@('$($ParamValue -join "','")')"
         }
 
-        'System.String[]'                             = {
+        'System.String[]'                              = {
             param ($ParamName, $ParamValue)
             $NewValues = Get-ParamValueString -String $ParamValue
             "@($($NewValues -join ','))"
         }
 
-        'System.Management.Automation.PSCustomObject' = {
+        'System.Management.Automation.PSCustomObject'  = {
             param ($ParamName, $ParamValue)
             "[PSCustomObject]$ParamValue"
         }
 
-        'System.String'                               = {
+        'System.String'                                = {
             param ($ParamName, $ParamValue)
             Get-ParamValueString -String $ParamValue
         }
 
-        'System.Boolean'                              = {
+        'System.Boolean'                               = {
+            param ($ParamName, $ParamValue)
+            "`$$ParamValue"
+        }
+
+        'System.Management.Automation.SwitchParameter' = {
             param ($ParamName, $ParamValue)
             "`$$ParamValue"
         }
@@ -473,6 +478,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
