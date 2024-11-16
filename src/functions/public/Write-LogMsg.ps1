@@ -122,11 +122,13 @@ function Write-LogMsg {
 
     }
 
+    $FullText = "$Text$Suffix"
+
     if ($AddPrefix) {
         # This method is faster than StringBuilder or the -join operator
-        $MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$Type`t$Text$Suffix"
+        $MessageToLog = "$Timestamp`t$ThisHostname`t$WhoAmI`t$Location`t$Command`t$($MyInvocation.ScriptLineNumber)`t$Type`t$FullText"
     } else {
-        $MessageToLog = "$Text$Suffix"
+        $MessageToLog = $FullText
     }
 
     Switch ($Type) {
@@ -165,7 +167,7 @@ function Write-LogMsg {
         Command   = $Command
         Line      = $MyInvocation.ScriptLineNumber
         Type      = $Type
-        Text      = $Text
+        Text      = $FullText
     }
 
     $null = $Buffer.Value.Enqueue($Obj)
