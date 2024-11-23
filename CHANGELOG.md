@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.105] - 2024-11-23 - use ordereddictionary for more useful log format with text on far right side since it has the most variable length
+
 ## [1.0.104] - 2024-11-16 - bugfix lost suffix
 
 ## [1.0.103] - 2024-11-15 - log cleanup

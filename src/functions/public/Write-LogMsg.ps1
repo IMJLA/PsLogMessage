@@ -159,7 +159,7 @@ function Write-LogMsg {
         $MessageToLog
     }
 
-    $Obj = @{
+    $Obj = [ordered]@{
         Timestamp = $Timestamp
         Hostname  = $ThisHostname
         WhoAmI    = $WhoAmI
