@@ -136,7 +136,9 @@ function ConvertTo-PSCodeString {
     )
 
     if ($InputObject) {
+
         switch ($InputObject.GetType().FullName) {
+
             'System.Collections.Hashtable' {
                 $Strings = ForEach ($OriginalKey in $InputObject.Keys) {
                     $Key = ConvertTo-PSCodeString -InputObject $OriginalKey
@@ -144,23 +146,41 @@ function ConvertTo-PSCodeString {
                     "$Key=$Value"
                 }
                 "@{$($Strings -join ';')}"
+                break
             }
+
             'System.Object[]' {
                 $Strings = ForEach ($Object in $InputObject) {
                     ConvertTo-PSCodeString -InputObject $Object
                 }
                 "@($($Strings -join ','))"
+                break
             }
+
             'System.String' {
                 if ($InputObject.Contains("'")) {
                     $Value = $InputObject.Replace('"', '`"')
                     "`"$Value`""
                 } else {
                     "'$InputObject'"
+                    break
                 }
             }
+
+            'System.Collections.Specialized.OrderedDictionary' {
+                $Strings = ForEach ($OriginalKey in $InputObject.Keys) {
+                    $Key = ConvertTo-PSCodeString -InputObject $OriginalKey
+                    $Value = ConvertTo-PSCodeString -InputObject $InputObject[$OriginalKey]
+                    "$Key=$Value"
+                }
+                "@{$($Strings -join ';')}"
+                break
+            }
+
             default { "$InputObject" }
+
         }
+
     } else {
         "`$null"
     }
@@ -461,6 +481,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
