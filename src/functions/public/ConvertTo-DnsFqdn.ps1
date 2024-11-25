@@ -6,36 +6,17 @@ function ConvertTo-DnsFqdn {
 
     param (
 
+        # DNS or NetBIOS hostname whose DNS FQDN to lookup
+        [Parameter(Mandatory)]
         [string]$ComputerName,
 
-        <#
-        Hostname of the computer running this function.
-
-        Can be provided as a string to avoid calls to HOSTNAME.EXE
-        #>
-        [string]$ThisHostName = (HOSTNAME.EXE),
-
-        # Username to record in log messages (can be passed to Write-LogMsg as a parameter to avoid calling an external process)
-        [string]$WhoAmI = (whoami.EXE),
-
-        # Log messages which have not yet been written to disk
+        # In-process cache to reduce calls to other processes or disk, and store repetitive parameters for better readability of code and logs
         [Parameter(Mandatory)]
-        [ref]$LogBuffer,
-
-        # Output stream to send the log messages to
-        [ValidateSet('Silent', 'Quiet', 'Success', 'Debug', 'Verbose', 'Output', 'Host', 'Warning', 'Error', 'Information', $null)]
-        [String]$DebugOutputStream = 'Debug'
+        [ref]$Cache
 
     )
 
-    $Log = @{
-        ThisHostname = $ThisHostname
-        Type         = $DebugOutputStream
-        Buffer       = $LogBuffer
-        WhoAmI       = $WhoAmI
-    }
-
-    Write-LogMsg @Log -Text "[System.Net.Dns]::GetHostByName('$ComputerName')"
-    [System.Net.Dns]::GetHostByName($ComputerName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
+    Write-LogMsg -Text "[System.Net.Dns]::GetHostByName('$ComputerName')" -Cache $Cache
+    $Cache.Value['ThisFqdn'].Value = [System.Net.Dns]::GetHostByName($ComputerName).HostName # -replace "^$ThisHostname", "$ThisHostname" #replace does not appear to be needed, capitalization is correct from GetHostByName()
 
 }
