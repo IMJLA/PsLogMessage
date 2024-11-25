@@ -2,7 +2,7 @@
 Module Name: PsLogMessage
 Module Guid: 2d9d8fd4-afc2-45e9-93b3-5939c590adc7
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.107
+Help Version: 1.0.108
 Locale: en-US
 ---
 
@@ -30,6 +30,11 @@ Get-CurrentHostName
 ### [Get-CurrentWhoAmI](Get-CurrentWhoAmI.md)
 
 Get-CurrentWhoAmI [[-ThisHostName] <string>] [[-WhoAmI] <string>]
+
+
+### [Get-ParamStringMap](Get-ParamStringMap.md)
+
+Get-ParamStringMap 
 
 
 ### [New-DatedSubfolder](New-DatedSubfolder.md)

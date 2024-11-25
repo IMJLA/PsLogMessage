@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.108] - 2024-11-24 - make paramstringmap public to allow caching
+
 ## [1.0.107] - 2024-11-24 - implement cache for repetitive params
 
 ## [1.0.106] - 2024-11-23 - support ordereddictionary class and break out of switch stmt after match
