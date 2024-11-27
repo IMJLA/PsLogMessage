@@ -106,7 +106,7 @@ function Write-LogMsg {
             [string]$WhoAmI = $Cache.Value['WhoAmI'].Value
             [ref]$Buffer = $Cache.Value['LogBuffer']
             [hashtable]$ParamStringMap = $Cache.Value['ParamStringMap'].Value
-            [hashtable]$ExpandKeyMap = $Cache.Value[$Cache.Value[$MapKeyName].Value].Value
+            [hashtable]$ExpandKeyMap = $Cache.Value[$MapKeyName].Value
         }
 
     }

@@ -387,7 +387,7 @@ function Write-LogMsg {
             [string]$WhoAmI = $Cache.Value['WhoAmI'].Value
             [ref]$Buffer = $Cache.Value['LogBuffer']
             [hashtable]$ParamStringMap = $Cache.Value['ParamStringMap'].Value
-            [hashtable]$ExpandKeyMap = $Cache.Value[$Cache.Value[$MapKeyName].Value].Value
+            [hashtable]$ExpandKeyMap = $Cache.Value[$MapKeyName].Value
         }
 
     }
@@ -495,6 +495,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','Get-ParamStringMap','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
