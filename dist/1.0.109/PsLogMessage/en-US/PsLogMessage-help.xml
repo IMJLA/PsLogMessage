@@ -817,9 +817,9 @@
           <maml:description>
             <maml:para>Message to log</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">System.String[]</command:parameterValue>
           <dev:type>
-            <maml:name>System.String</maml:name>
+            <maml:name>System.String[]</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -969,6 +969,117 @@
           <dev:defaultValue>(whoami.EXE)</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Write-LogMsg</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="1" aliases="none">
+          <maml:name>Text</maml:name>
+          <maml:description>
+            <maml:para>Message to log</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddPrefix</maml:name>
+          <maml:description>
+            <maml:para>Add a prefix to the message including the date, hostname, current user, and info about the current call stack</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>True</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Cache</maml:name>
+          <maml:description>
+            <maml:para>In-process cache to reduce calls to other processes or disk, and store repetitive parameters for better readability of code and logs</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.Management.Automation.PSReference</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Management.Automation.PSReference</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Expand</maml:name>
+          <maml:description>
+            <maml:para>Splats for the command at the end of the -Text parameter. E.g.     Write-LogMsg -Text 'Get-Process' -Expand @{Name = 'explorer'} Has a resultant $Text value of:     Get-Process -Name explorer</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.Collections.Hashtable[]</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Collections.Hashtable[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>LogFile</maml:name>
+          <maml:description>
+            <maml:para>Text file to append the log message to</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MapKeyName</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill MapKeyName Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>LogEmptyMap</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:description>
+            <maml:para>Output the message to the pipeline</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="proga">
+          <maml:name>ProgressAction</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill ProgressAction Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.Management.Automation.ActionPreference</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Management.Automation.ActionPreference</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Suffix</maml:name>
+          <maml:description>
+            <maml:para>Suffix to append to the end of the string</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
@@ -987,6 +1098,18 @@
         <maml:name>Buffer</maml:name>
         <maml:description>
           <maml:para>Log messages which have not yet been written to disk</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">System.Management.Automation.PSReference</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Management.Automation.PSReference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Cache</maml:name>
+        <maml:description>
+          <maml:para>In-process cache to reduce calls to other processes or disk, and store repetitive parameters for better readability of code and logs</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">System.Management.Automation.PSReference</command:parameterValue>
         <dev:type>
@@ -1030,6 +1153,18 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MapKeyName</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill MapKeyName Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>LogEmptyMap</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ParamStringMap</maml:name>
@@ -1084,9 +1219,9 @@
         <maml:description>
           <maml:para>Message to log</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">System.String[]</command:parameterValue>
         <dev:type>
-          <maml:name>System.String</maml:name>
+          <maml:name>System.String[]</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -1131,7 +1266,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>[System.String]$Text parameter</maml:name>
+          <maml:name>[System.String[]]$Text parameter</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>

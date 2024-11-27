@@ -13,10 +13,18 @@ Writes a message to a log file and/or PowerShell output stream
 
 ## SYNTAX
 
+### NoCache
 ```
-Write-LogMsg [[-Text] <String>] [-Type <String>] [-Suffix <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
- [-PassThru <Boolean>] [-ThisHostname <String>] [-WhoAmI <String>] -Buffer <PSReference>
- [-Expand <Hashtable[]>] [-ExpandKeyMap <Hashtable>] [-ParamStringMap <Hashtable>]
+Write-LogMsg [[-Text] <String[]>] [-Suffix <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
+ [-PassThru <Boolean>] [-Expand <Hashtable[]>] [-Type <String>] [-ThisHostname <String>] [-WhoAmI <String>]
+ -Buffer <PSReference> [-ExpandKeyMap <Hashtable>] [-ParamStringMap <Hashtable>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
+```
+
+### Cache
+```
+Write-LogMsg [[-Text] <String[]>] [-Suffix <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
+ [-PassThru <Boolean>] [-Expand <Hashtable[]>] -Cache <PSReference> [-MapKeyName <String>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
@@ -67,7 +75,22 @@ Log messages which have not yet been written to disk
 
 ```yaml
 Type: System.Management.Automation.PSReference
-Parameter Sets: (All)
+Parameter Sets: NoCache
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Cache
+In-process cache to reduce calls to other processes or disk, and store repetitive parameters for better readability of code and logs
+
+```yaml
+Type: System.Management.Automation.PSReference
+Parameter Sets: Cache
 Aliases:
 
 Required: True
@@ -101,7 +124,7 @@ Used to override key-value pairs in the Expand parameter.
 
 ```yaml
 Type: System.Collections.Hashtable
-Parameter Sets: (All)
+Parameter Sets: NoCache
 Aliases:
 
 Required: False
@@ -126,12 +149,27 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -MapKeyName
+{{ Fill MapKeyName Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: Cache
+Aliases:
+
+Required: False
+Position: Named
+Default value: LogEmptyMap
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ParamStringMap
 {{ Fill ParamStringMap Description }}
 
 ```yaml
 Type: System.Collections.Hashtable
-Parameter Sets: (All)
+Parameter Sets: NoCache
 Aliases:
 
 Required: False
@@ -190,7 +228,7 @@ Accept wildcard characters: False
 Message to log
 
 ```yaml
-Type: System.String
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 
@@ -206,7 +244,7 @@ Hostname to use in the log messages and/or output object
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: NoCache
 Aliases:
 
 Required: False
@@ -221,7 +259,7 @@ Output stream to send the message to
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: NoCache
 Aliases:
 
 Required: False
@@ -236,7 +274,7 @@ Hostname to use in the log messages and/or output object
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: NoCache
 Aliases:
 
 Required: False
@@ -251,7 +289,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### [System.String]$Text parameter
+### [System.String[]]$Text parameter
 ## OUTPUTS
 
 ### [System.String] Resulting log line, returned if the -PassThru or -Type Output parameters were used
