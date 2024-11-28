@@ -12,7 +12,7 @@
     RootModule        = 'PsLogMessage'
 
     # Version number of this module.
-    ModuleVersion     = '1.0.110'
+    ModuleVersion     = '1.0.112'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()

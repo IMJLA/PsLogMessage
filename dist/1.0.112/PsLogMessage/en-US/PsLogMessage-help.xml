@@ -870,7 +870,7 @@
             <maml:name>System.Collections.Hashtable</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>@{}</dev:defaultValue>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>LogFile</maml:name>
@@ -894,7 +894,7 @@
             <maml:name>System.Collections.Hashtable</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>(Get-ParamStringMap)</dev:defaultValue>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>PassThru</maml:name>
@@ -942,7 +942,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>(HOSTNAME.EXE)</dev:defaultValue>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Type</maml:name>
@@ -954,7 +954,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>Information</dev:defaultValue>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>WhoAmI</maml:name>
@@ -966,7 +966,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>(whoami.EXE)</dev:defaultValue>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
       <command:syntaxItem>
@@ -1140,7 +1140,7 @@
           <maml:name>System.Collections.Hashtable</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>@{}</dev:defaultValue>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>LogFile</maml:name>
@@ -1176,7 +1176,7 @@
           <maml:name>System.Collections.Hashtable</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>(Get-ParamStringMap)</dev:defaultValue>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>PassThru</maml:name>
@@ -1236,7 +1236,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>(HOSTNAME.EXE)</dev:defaultValue>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Type</maml:name>
@@ -1248,7 +1248,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>Information</dev:defaultValue>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>WhoAmI</maml:name>
@@ -1260,7 +1260,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>(whoami.EXE)</dev:defaultValue>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>

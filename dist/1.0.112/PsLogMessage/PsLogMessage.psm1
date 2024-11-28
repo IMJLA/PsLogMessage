@@ -339,15 +339,15 @@ function Write-LogMsg {
         # Output stream to send the message to
         [Parameter(ParameterSetName = 'NoCache')]
         [ValidateSet('Silent', 'Quiet', 'Success', 'Debug', 'Verbose', 'Output', 'Host', 'Warning', 'Error', 'Information', $null)]
-        [string]$Type = 'Information',
+        [string]$Type,
 
         # Hostname to use in the log messages and/or output object
         [Parameter(ParameterSetName = 'NoCache')]
-        [string]$ThisHostname = (HOSTNAME.EXE),
+        [string]$ThisHostname,
 
         # Hostname to use in the log messages and/or output object
         [Parameter(ParameterSetName = 'NoCache')]
-        [string]$WhoAmI = (whoami.EXE),
+        [string]$WhoAmI,
 
         # Log messages which have not yet been written to disk
         [Parameter(Mandatory, ParameterSetName = 'NoCache')]
@@ -355,10 +355,10 @@ function Write-LogMsg {
 
         # Used to override key-value pairs in the Expand parameter.
         [Parameter(ParameterSetName = 'NoCache')]
-        [hashtable]$ExpandKeyMap = @{},
+        [hashtable]$ExpandKeyMap,
 
         [Parameter(ParameterSetName = 'NoCache')]
-        [hashtable]$ParamStringMap = (Get-ParamStringMap),
+        [hashtable]$ParamStringMap,
 
         # In-process cache to reduce calls to other processes or disk, and store repetitive parameters for better readability of code and logs
         [Parameter(Mandatory, ParameterSetName = 'Cache')]
@@ -388,6 +388,28 @@ function Write-LogMsg {
             [ref]$Buffer = $Cache.Value['LogBuffer']
             [hashtable]$ParamStringMap = $Cache.Value['ParamStringMap'].Value
             [hashtable]$ExpandKeyMap = $Cache.Value[$MapKeyName].Value
+        } else {
+
+            if (-not $PSBoundParameters.ContainsKey('Type')) {
+                $Type = 'Information'
+            }
+
+            if (-not $PSBoundParameters.ContainsKey('ThisHostname')) {
+                $ThisHostname = HOSTNAME.EXE
+            }
+
+            if (-not $PSBoundParameters.ContainsKey('WhoAmI')) {
+                $WhoAmI = whoami.EXE
+            }
+
+            if (-not $PSBoundParameters.ContainsKey('ExpandKeyMap')) {
+                $ExpandKeyMap = @{}
+            }
+
+            if (-not $PSBoundParameters.ContainsKey('ParamStringMap')) {
+                $ParamStringMap = Get-ParamStringMap
+            }
+
         }
 
     }
@@ -495,6 +517,8 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','Get-ParamStringMap','New-DatedSubfolder','Write-LogMsg')
+
+
 
 
 

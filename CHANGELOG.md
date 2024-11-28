@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.112] - 2024-11-27 - this alternative to default param values for nocache parameterset is faster whe the cache parameterset is used
+
+## [1.0.111] - 2024-11-27 - this alternative to default param values for nocache parameterset is faster whe the cache parameterset is used
+
 ## [1.0.110] - 2024-11-26 - bugfix expandkeymap
 
 ## [1.0.109] - 2024-11-26 - implement cache
