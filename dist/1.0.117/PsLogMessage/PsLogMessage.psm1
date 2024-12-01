@@ -353,7 +353,7 @@ function Write-LogMsg {
 
         # Used to override key-value pairs in the Expand parameter.
         [Parameter(ParameterSetName = 'Cache')]
-        [hashtable]$ExpansionMap = $Cache.Value['LogEmptyMap'].Value
+        [hashtable]$ExpansionMap
 
     )
 
@@ -505,6 +505,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','Get-ParamStringMap','New-DatedSubfolder','Write-LogMsg')
+
 
 
 

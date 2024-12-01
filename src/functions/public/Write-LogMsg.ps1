@@ -85,7 +85,7 @@ function Write-LogMsg {
 
         # Used to override key-value pairs in the Expand parameter.
         [Parameter(ParameterSetName = 'Cache')]
-        [hashtable]$ExpansionMap = $Cache.Value['LogEmptyMap'].Value
+        [hashtable]$ExpansionMap
 
     )
 
