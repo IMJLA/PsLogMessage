@@ -24,7 +24,7 @@ Write-LogMsg [[-Text] <String[]>] [-Suffix <String>] [-AddPrefix <Boolean>] [-Lo
 ### Cache
 ```
 Write-LogMsg [[-Text] <String[]>] [-Suffix <String>] [-AddPrefix <Boolean>] [-LogFile <String>]
- [-PassThru <Boolean>] [-Expand <Hashtable[]>] -Cache <PSReference> [-MapKeyName <String>]
+ [-PassThru <Boolean>] [-Expand <Hashtable[]>] -Cache <PSReference> [-ExpansionMap <Hashtable>]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
@@ -134,6 +134,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ExpansionMap
+Used to override key-value pairs in the Expand parameter.
+
+```yaml
+Type: System.Collections.Hashtable
+Parameter Sets: Cache
+Aliases:
+
+Required: False
+Position: Named
+Default value: $Cache.Value['LogEmptyMap'].Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -LogFile
 Text file to append the log message to
 
@@ -145,21 +160,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MapKeyName
-{{ Fill MapKeyName Description }}
-
-```yaml
-Type: System.String
-Parameter Sets: Cache
-Aliases:
-
-Required: False
-Position: Named
-Default value: LogEmptyMap
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -373,8 +373,9 @@ function Write-LogMsg {
         [Parameter(Mandatory, ParameterSetName = 'Cache')]
         [ref]$Cache,
 
+        # Used to override key-value pairs in the Expand parameter.
         [Parameter(ParameterSetName = 'Cache')]
-        [string]$MapKeyName = 'LogEmptyMap'
+        [hashtable]$ExpansionMap = $Cache.Value['LogEmptyMap'].Value
 
     )
 
@@ -396,7 +397,7 @@ function Write-LogMsg {
             [string]$WhoAmI = $Cache.Value['WhoAmI'].Value
             [ref]$Buffer = $Cache.Value['LogBuffer']
             [hashtable]$ParamStringMap = $Cache.Value['ParamStringMap'].Value
-            [hashtable]$ExpandKeyMap = $Cache.Value[$MapKeyName].Value
+            [hashtable]$ExpandKeyMap = $ExpansionMap
         } else {
 
             if (-not $PSBoundParameters.ContainsKey('Type')) {
@@ -526,6 +527,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','Get-ParamStringMap','New-DatedSubfolder','Write-LogMsg')
+
 
 
 

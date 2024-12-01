@@ -83,8 +83,9 @@ function Write-LogMsg {
         [Parameter(Mandatory, ParameterSetName = 'Cache')]
         [ref]$Cache,
 
+        # Used to override key-value pairs in the Expand parameter.
         [Parameter(ParameterSetName = 'Cache')]
-        [string]$MapKeyName = 'LogEmptyMap'
+        [hashtable]$ExpansionMap = $Cache.Value['LogEmptyMap'].Value
 
     )
 
@@ -106,7 +107,7 @@ function Write-LogMsg {
             [string]$WhoAmI = $Cache.Value['WhoAmI'].Value
             [ref]$Buffer = $Cache.Value['LogBuffer']
             [hashtable]$ParamStringMap = $Cache.Value['ParamStringMap'].Value
-            [hashtable]$ExpandKeyMap = $Cache.Value[$MapKeyName].Value
+            [hashtable]$ExpandKeyMap = $ExpansionMap
         } else {
 
             if (-not $PSBoundParameters.ContainsKey('Type')) {
