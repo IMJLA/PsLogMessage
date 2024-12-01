@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.118] - 2024-11-30 - pesky unavoidable default hashtable value
+
 ## [1.0.117] - 2024-11-30 - bugfix default param value expression is always evaluated even when other param set is used
 
 ## [1.0.116] - 2024-11-30 - implement cache support
