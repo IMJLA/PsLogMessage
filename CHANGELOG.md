@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.114] - 2024-11-30 - add scriptblock support
+
 ## [1.0.113] - 2024-11-27 - add ThisFqdn switch
 
 ## [1.0.112] - 2024-11-27 - this alternative to default param values for nocache parameterset is faster whe the cache parameterset is used

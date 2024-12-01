@@ -53,6 +53,11 @@ function Get-ParamStringMap {
             "`$$ParamValue"
         }
 
+        'System.Management.Automation.ScriptBlock'     = {
+            param ($ParamName, $ParamValue)
+            "{$ParamValue}"
+        }
+
     }
 
 }

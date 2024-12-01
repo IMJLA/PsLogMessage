@@ -260,6 +260,11 @@ function Get-ParamStringMap {
             "`$$ParamValue"
         }
 
+        'System.Management.Automation.ScriptBlock'     = {
+            param ($ParamName, $ParamValue)
+            "{$ParamValue}"
+        }
+
     }
 
 }
@@ -521,6 +526,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','Get-ParamStringMap','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
