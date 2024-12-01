@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.116] - 2024-11-30 - implement cache support
+
 ## [1.0.115] - 2024-11-30 - implement ExpansionMap and eliminate MapKeyName
 
 ## [1.0.114] - 2024-11-30 - add scriptblock support
