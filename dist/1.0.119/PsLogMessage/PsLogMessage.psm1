@@ -247,8 +247,7 @@ function Get-ParamStringMap {
 
 }
 function New-DatedSubfolder {
-    # Creates a folder structure with a folder for each year and month
-    # Then it creates one timestamped folder inside the appropriate month
+    # Create a 3-tier folder structure with a folder for the current year, month, and timestamp
     # This folder is intended to be used to store output from a single execution of a script
     param (
         [parameter(Mandatory)]
@@ -505,6 +504,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','Get-ParamStringMap','New-DatedSubfolder','Write-LogMsg')
+
 
 
 
