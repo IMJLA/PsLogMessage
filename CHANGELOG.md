@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.121] - 2025-01-22 - bugfix for switch parameters
+
+## [1.0.120] - 2025-01-22 - bugfix for switch parameters
+
 ## [1.0.119] - 2025-01-17 - update comment-based help
 
 ## [1.0.118] - 2024-11-30 - pesky unavoidable default hashtable value

@@ -417,6 +417,7 @@ function Write-LogMsg {
 
                         if ($null -ne $ParamValue) {
 
+                            $TypeName = ''
                             $TypeName = $ParamValue.GetType().FullName
                             $ValueScript = $ParamStringMap[$TypeName]
 
@@ -435,7 +436,12 @@ function Write-LogMsg {
 
                     }
 
-                    $String = "$String -$ParamName $ParamValue"
+                    if ($TypeName -eq 'System.Management.Automation.SwitchParameter') {
+                        $String = "$String -$ParamName`:$ParamValue"
+                    } else {
+                        $String = "$String -$ParamName $ParamValue"
+                    }
+
 
                 }
 
@@ -504,6 +510,8 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-DnsFqdn','ConvertTo-PSCodeString','Export-LogCsv','Get-CurrentHostname','Get-CurrentWhoAmI','Get-ParamStringMap','New-DatedSubfolder','Write-LogMsg')
+
+
 
 
 

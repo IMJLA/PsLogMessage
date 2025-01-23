@@ -150,6 +150,7 @@ function Write-LogMsg {
 
                         if ($null -ne $ParamValue) {
 
+                            $TypeName = ''
                             $TypeName = $ParamValue.GetType().FullName
                             $ValueScript = $ParamStringMap[$TypeName]
 
@@ -168,7 +169,12 @@ function Write-LogMsg {
 
                     }
 
-                    $String = "$String -$ParamName $ParamValue"
+                    if ($TypeName -eq 'System.Management.Automation.SwitchParameter') {
+                        $String = "$String -$ParamName`:$ParamValue"
+                    } else {
+                        $String = "$String -$ParamName $ParamValue"
+                    }
+
 
                 }
 
